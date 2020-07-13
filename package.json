@@ -19,8 +19,9 @@
   "dependencies": {
     "mobx": "^5.15.4",
     "react": "^16.13.1",
+    "react-mobx": "^0.0.4",
     "react-dom": "^16.13.1",
-    "react-mobx": "^0.0.4"
+    "tailwindcss": "^1.4.6"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
