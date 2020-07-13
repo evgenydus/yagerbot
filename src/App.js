@@ -4,7 +4,11 @@ import RootStore from './stores'
 const App = () => {
   const [store] = useState(() => new RootStore())
 
-  return <h2>Hello</h2>
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <input className="border rounded" type="text" />
+    </div>
+  )
 }
 
 export default App
