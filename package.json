@@ -1,33 +1,39 @@
 {
   "name": "yagerbot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Yager Group Bot FE",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier \"src/**/*.{js,html}\" --write",
     "dev": "parcel public/index.html",
-    "build": "parcel build public/index.html"
+    "build": "parcel build public/index.html",
+    "format": "prettier \"src/**/*.{js,html}\" --write",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/evgenydus/yagerbot.git"
-  },
-  "author": "",
+  "repository": "git+https://github.com/evgenydus/yagerbot.git",
+  "author": "Evgeny Dus/Aleksandr Dus",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/evgenydus/yagerbot/issues"
   },
   "homepage": "https://github.com/evgenydus/yagerbot#readme",
+  "dependencies": {
+    "eslint-plugin-prettier": "^3.1.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.4.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.5",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.0.5"
   },
-  "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
-  }
+  "browserslist": [
+    "last 2 Chrome versions"
+  ]
 }
