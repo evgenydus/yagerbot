@@ -1,8 +1,6 @@
+@import '/index.css';
+@import '/components/UI/Button';
+
 @tailwind base;
-
-body {
-  @apply bg-teal-100;
-}
-
 @tailwind components;
 @tailwind utilities;
