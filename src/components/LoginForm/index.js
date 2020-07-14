@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Button from '../UI/Button/Button'
+import Button from '/components/UI/Button'
 
 const cInput = 'border-b mb-6 p-1'
 
