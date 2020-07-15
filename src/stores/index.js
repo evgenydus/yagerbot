@@ -1,9 +1,7 @@
-import UserData from './UserData'
+import Users from './Users'
 
-class RootStore {
+export default class RootStore {
   constructor() {
-    this.userData = new UserData(this)
+    this.users = new Users(this)
   }
 }
-
-export default RootStore

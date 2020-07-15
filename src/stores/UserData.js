@@ -1,6 +1,6 @@
 import { observable } from 'mobx'
 
-class UserData {
+export default class UserData {
   @observable userName = ''
   @observable password = ''
   @observable token = ''
@@ -21,5 +21,3 @@ class UserData {
     this.password = value
   }
 }
-
-export default UserData
