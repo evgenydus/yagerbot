@@ -1,12 +1,8 @@
-@import "./global.css";
-@import "/styles/inputs/button";
-@import "/styles/inputs/input";
-
 @tailwind base;
-
-input, button, a, button:focus {
-  outline: none;
-}
-
 @tailwind components;
 @tailwind utilities;
+
+@import "./inputs/button.css";
+@import "./inputs/inputs.css";
+
+@import "./global.css";
