@@ -1,0 +1,60 @@
+export const usersMock = [
+  {
+    firstName: 'Aleksandr',
+    groupId: 987,
+    id: 123,
+    label: 'Aleksandr Dus',
+    lastName: 'D',
+    username: 'sashadus',
+  },
+  {
+    firstName: 'Evgeny',
+    groupId: 777,
+    id: 321,
+    label: 'Evgeny Dus',
+    lastName: 'Dus',
+    username: 'jenyadus',
+  },
+  {
+    firstName: 'Alina',
+    groupId: 789,
+    id: 147,
+    label: 'Alina Dus',
+    lastName: 'Dus',
+    username: 'alinadus',
+  },
+  {
+    firstName: 'Max',
+    groupId: 369,
+    id: 258,
+    label: 'Maxim Kozlov',
+    lastName: 'Kozlov',
+    username: 'maxk',
+  },
+  {
+    firstName: 'John',
+    groupId: 785,
+    id: 654,
+    label: 'John First',
+    lastName: 'First',
+    username: 'johnnyf',
+  },
+  {
+    firstName: 'Elena',
+    groupId: 159,
+    id: 468,
+    label: 'Elena Kust',
+    lastName: 'Kust',
+    username: 'kustlena',
+  },
+  {
+    firstName: 'Maria',
+    groupId: 167,
+    id: 499,
+    label: 'Maria Best',
+    lastName: 'Best',
+    username: 'bestmaria',
+  },
+]
+
+export default usersMock

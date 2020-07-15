@@ -1,16 +1,6 @@
 import { observable } from 'mobx'
 import User from './User'
-
-const usersData = [
-  {
-    firstName: 'Aleksandr',
-    groupId: 987,
-    id: 123,
-    label: 'Aleksandr Dus',
-    lastName: 'D',
-    username: 'sashadus',
-  },
-]
+import usersMock from '/mocks/users'
 
 export default class Users {
   @observable users = []
@@ -20,7 +10,7 @@ export default class Users {
   }
 
   loadUsers() {
-    const users = usersData.map((user) => new User(user, this))
+    const users = usersMock.map((user) => new User(user, this))
 
     this.users.replace(users)
   }
