@@ -4,8 +4,8 @@ import LoginForm from '/components/LoginForm'
 
 const Login = () => {
   return (
-    <div className="bg-white max-w-xl px-16 py-12 rounded-md shadow-lg w-10/12">
-      <div className="mb-8 text-3xl text-center">Представьтесь, пожалуйста</div>
+    <div className="bg-white max-w-xl p-8 rounded-md shadow-lg">
+      <div className="mb-8 text-2xl text-center">Представьтесь, пожалуйста</div>
       <LoginForm />
     </div>
   )

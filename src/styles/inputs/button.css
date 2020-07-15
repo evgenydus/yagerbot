@@ -1,12 +1,12 @@
 .btn {
-  @apply font-semibold px-4 py-2 rounded;
+  @apply px-4 py-2 rounded;
 
   color: #fff;
   min-width: 5rem;
 }
 
-.btn-green {
-  @apply bg-green-400;
+.btn-primary {
+  @apply bg-teal-500;
 }
 
 .btn-green:hover {
