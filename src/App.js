@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { observer } from 'mobx-react'
 import RootStore from './stores'
 
 import Login from './containers/Login'
@@ -7,8 +8,8 @@ const App = () => {
   const [store] = useState(() => new RootStore())
 
   useEffect(() => {
-    store.users.loadUsers()
-  }, [store.users])
+    store.usersStore.loadUsers()
+  }, [store.usersStore])
 
   return (
     <div>
@@ -17,4 +18,4 @@ const App = () => {
   )
 }
 
-export default App
+export default observer(App)

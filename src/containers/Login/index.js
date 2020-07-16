@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 
 import LoginForm from '/components/LoginForm'
 
@@ -13,4 +14,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default observer(Login)

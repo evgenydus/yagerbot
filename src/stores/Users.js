@@ -1,17 +1,23 @@
-import { observable } from 'mobx'
+import { action, computed, observable } from 'mobx'
 import User from './User'
 import usersMock from '/mocks/users'
 
 export default class Users {
-  @observable users = []
+  @observable data = []
 
   constructor(rootStore) {
     this.rootStore = rootStore
   }
 
+  @computed
+  get users() {
+    return this.data.toJSON()
+  }
+
+  @action
   loadUsers() {
     const users = usersMock.map((user) => new User(user, this))
 
-    this.users.replace(users)
+    this.data.replace(users)
   }
 }
