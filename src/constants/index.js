@@ -12,13 +12,6 @@ export const pageNames = {
   [pages.reports]: 'Отчеты',
 }
 
-export const routes = {
-  [pages.dashboard]: `/${pages.dashboard}`,
-  [pages.messages]: `/${pages.messages}`,
-  [pages.people]: `/${pages.people}`,
-  [pages.reports]: `/${pages.reports}`,
-}
-
 export const pageIcons = {
   [pages.dashboard]: '',
   [pages.messages]: '',
@@ -27,3 +20,12 @@ export const pageIcons = {
 }
 
 export const navigationItems = [pages.dashboard, pages.people, pages.messages, pages.reports]
+
+const getRoutes = items =>
+  items.reduce((obj, item) => {
+    obj[item] = `/${item}`
+
+    return obj
+  }, {})
+
+export const routes = getRoutes(navigationItems)
