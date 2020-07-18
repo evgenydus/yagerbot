@@ -23,3 +23,11 @@
 .btn-secondary:hover {
   @apply bg-primary-dark text-white;
 }
+
+.link {
+  @apply text-gray-800;
+}
+
+.link:hover {
+  @apply text-primary
+}
