@@ -1,9 +1,9 @@
 import React from 'react'
 
 const UserCard = ({ user }) => (
-  <div className="bg-white border p-4 rounded">
-    <div>{user.label}</div>
-    <div className="text-gray-500 text-sm">@{user.username}</div>
+  <div className="bg-white p-4 rounded shadow-xs">
+    <div className="text-sm">{user.label}</div>
+    <div className="text-gray-500 text-xs">@{user.username}</div>
   </div>
 )
 
