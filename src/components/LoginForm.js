@@ -55,9 +55,15 @@ const LoginForm = ({ store }) => {
           {formStore.errorMessage}
         </div>
       )}
-      <Button className="btn-primary mt-4 mx-auto" type="submit">
-        Войти
-      </Button>
+      <div className="flex h-10 items-center justify-center mt-4">
+        {formStore.isLoading ? (
+          <div className="text-sm">Подожди...</div>
+        ) : (
+          <Button className="btn-primary" type="submit">
+            Войти
+          </Button>
+        )}
+      </div>
     </form>
   )
 }

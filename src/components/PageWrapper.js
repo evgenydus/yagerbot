@@ -8,7 +8,7 @@ const PageWrapper = ({ children }) => (
     <Sidebar />
     <div className="bg-gray-100 border-r flex-grow">
       <Header />
-      <div className="p-4">{children}</div>
+      <div>{children}</div>
     </div>
   </div>
 )

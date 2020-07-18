@@ -8,6 +8,8 @@ export default class LoginForm {
   @observable password = ''
   @observable errorMessage = ''
 
+  @observable isLoading = false
+
   constructor({ onSuccess = () => {}, rootStore }) {
     this.rootStore = rootStore
     this.onSuccess = onSuccess
@@ -57,11 +59,16 @@ export default class LoginForm {
       return Promise.resolve()
     }
 
+    this.isLoading = true
+
     return this.api
       .logIn(this.asJSON)
       .then(this.onSuccess)
       .catch(error => {
         this.setErrorMessage(error.message)
+      })
+      .finally(() => {
+        this.isLoading = false
       })
   }
 }

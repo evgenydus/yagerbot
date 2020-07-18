@@ -6,7 +6,9 @@ import UserCardList from '../components/UserCardList'
 
 const Dashboard = ({ usersStore }) => (
   <PageWrapper>
-    <UserCardList users={usersStore.users} />
+    <div className="p-4">
+      <UserCardList users={usersStore.users} />
+    </div>
   </PageWrapper>
 )
 
