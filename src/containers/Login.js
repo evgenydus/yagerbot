@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import LoginForm from '../../components/LoginForm'
+import LoginForm from '../components/LoginForm'
 
 const Login = ({ store }) => (
   <div className="bg-primary-light flex h-screen items-center justify-center m-auto">

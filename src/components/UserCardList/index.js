@@ -6,7 +6,7 @@ const UserCardList = ({ users }) => {
   if (!users.length) return null
 
   return (
-    <div className="grid gap-4 grid-cols-4 p-4">
+    <div className="grid gap-4 grid-cols-4">
       {users.map(user => (
         <UserCard key={user.id} user={user} />
       ))}

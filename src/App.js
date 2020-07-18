@@ -4,14 +4,17 @@ import { observer } from 'mobx-react'
 import api from './api'
 import RootStore from './stores'
 
+import Admin from './containers/Admin'
+import Dashboard from './containers/Dashboard'
 import Login from './containers/Login'
+import { routes } from './constants'
 
 const App = () => {
   const [store] = useState(() => new RootStore({ api }))
 
   useEffect(() => {
     if (store.authToken) {
-      navigate('/dashboard')
+      navigate(routes.dashboard)
     } else {
       navigate('/login')
     }
@@ -21,7 +24,8 @@ const App = () => {
   return (
     <Router>
       <Login path="/login" store={store} />
-      <Dashboard path="/dashboard" usersStore={store.usersStore} />
+      <Dashboard path={routes.dashboard} usersStore={store.usersStore} />
+      <Admin path={routes.admin} store={store} />
     </Router>
   )
 }
