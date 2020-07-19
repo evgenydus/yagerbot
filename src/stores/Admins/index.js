@@ -1,5 +1,5 @@
 import { action, observable } from 'mobx'
-import Admin from './Admin'
+import AdminModel from './AdminModel'
 
 export default class Admins {
   rootStore
@@ -31,7 +31,7 @@ export default class Admins {
 
   @action
   addAdmin(adminData) {
-    this.admins.push(new Admin(adminData, this))
+    this.admins.push(new AdminModel(adminData, this))
     this.rawData.push(adminData)
   }
 
@@ -40,7 +40,7 @@ export default class Admins {
 
     this.api.getAdminList().then(data => {
       this.setRawData(data)
-      const admins = data.map(admin => new Admin(admin, this))
+      const admins = data.map(adminData => new AdminModel(adminData, this))
 
       this.setAdmins(admins)
     })

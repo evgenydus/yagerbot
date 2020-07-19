@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { observer } from 'mobx-react'
 import CreateGroupForm from '../../stores/Groups/CreateGroupForm'
 
@@ -8,6 +8,7 @@ import ColorPicker from '../UI/ColorPicker'
 import FormField from '../UI/FormField'
 import Select from '../UI/Select'
 import TextInput from '../UI/TextInput'
+import FormButtons from './FormButtons'
 
 const CreateGroup = ({ groupsStore }) => {
   const [isCreation, setCreation] = useState(false)
@@ -17,6 +18,8 @@ const CreateGroup = ({ groupsStore }) => {
   }
 
   const [formStore] = useState(() => new CreateGroupForm(groupsStore, () => {}))
+
+  const nameInputRef = useRef(null)
 
   if (!isCreation) return <Button onClick={toggleCreation}>Новая группа</Button>
 
@@ -31,7 +34,12 @@ const CreateGroup = ({ groupsStore }) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    formStore.sendData().then(toggleCreation)
+    formStore
+      .sendData()
+      .then(toggleCreation)
+      .catch(() => {
+        nameInputRef.current.focus()
+      })
   }
 
   return (
@@ -41,6 +49,7 @@ const CreateGroup = ({ groupsStore }) => {
         <div className="flex mb-4">
           <FormField className="flex-grow" label="Название*">
             <TextInput
+              ref={nameInputRef}
               autoFocus
               className="w-full"
               onChange={handleNameChange}
@@ -61,13 +70,8 @@ const CreateGroup = ({ groupsStore }) => {
             placeholder="Выбери пользователей..."
           />
         </div>
-        <div className="flex justify-end mt-4">
-          <Button mode="gray" onClick={toggleCreation}>
-            Отмена
-          </Button>
-          <Button className="ml-2" type="submit">
-            Создать
-          </Button>
+        <div className="mt-4">
+          <FormButtons isLoading={formStore.isLoading} onCancel={toggleCreation} />
         </div>
       </form>
     </CardWrapper>

@@ -5,6 +5,8 @@ export default class CreateGroupForm {
   @observable color = ''
   @observable userIds = []
 
+  @observable isLoading = false
+
   constructor(groupsStore) {
     this.groupsStore = groupsStore
   }
@@ -18,6 +20,11 @@ export default class CreateGroupForm {
       color: this.color,
       name: this.name,
     }
+  }
+
+  @computed
+  get isValid() {
+    return this.name.trim() && this.color
   }
 
   @computed
@@ -43,9 +50,26 @@ export default class CreateGroupForm {
     this.name = value
   }
 
+  @action
+  resetForm() {
+    this.name = ''
+    this.color = ''
+    this.userIds = []
+  }
+
   sendData() {
-    return this.api.createGroup(this.requestPayload).then(groupData => {
-      this.groupsStore.addGroup(groupData)
-    })
+    if (!this.isValid) return Promise.reject()
+
+    this.isLoading = true
+
+    return this.api
+      .createGroup(this.requestPayload)
+      .then(groupData => {
+        this.groupsStore.addGroup(groupData)
+        this.resetForm()
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
   }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react'
-import CreateAdminForm from '../../stores/CreateAdminForm'
+import CreateAdminForm from '../../stores/Admins/CreateAdminForm'
 
 import Button from '../UI/Button'
 import CardWrapper from '../CardWrapper'

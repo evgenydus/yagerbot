@@ -1,6 +1,6 @@
 import { action, observable } from 'mobx'
-import User from './User'
-import usersMock from '../mocks/users'
+import UserModel from './UserModel'
+import usersMock from '../../mocks/users'
 
 export default class Users {
   rootStore
@@ -17,7 +17,7 @@ export default class Users {
 
   @action
   loadUsers() {
-    const users = usersMock.map(user => new User(user, this))
+    const users = usersMock.map(userData => new UserModel(userData, this))
 
     this.users.replace(users)
   }
