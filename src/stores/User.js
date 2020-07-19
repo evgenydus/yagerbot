@@ -1,22 +1,30 @@
-import { action, observable } from 'mobx'
+import { action, computed, observable } from 'mobx'
 
 export default class User {
-  @observable id
-  @observable username
-  @observable firstName
-  @observable lastName
+  id = null
+  username = ''
+  firstName
+  lastName
   @observable label
   @observable groupId
 
-  constructor({ firstName = '', groupId, id, label = '', lastName = '', username }, users) {
+  constructor(
+    { first_name, group, id, bot_panel_username, last_name, telegram_username },
+    usersStore,
+  ) {
     this.id = id
-    this.username = username
-    this.firstName = firstName
-    this.lastName = lastName
-    this.label = label
-    this.groupId = groupId
+    this.username = telegram_username
+    this.firstName = first_name
+    this.lastName = last_name
+    this.label = bot_panel_username
+    this.groupId = group
 
-    this.users = users
+    this.usersStore = usersStore
+  }
+
+  @computed
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`
   }
 
   @action

@@ -9,5 +9,6 @@ input, a, button:focus {
 
 @import "./inputs/button.css";
 @import "./inputs/inputs.css";
+@import "./tables.css";
 
 @import "./global.css";
