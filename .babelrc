@@ -1,5 +1,19 @@
 {
+  "presets": [
+    "@babel/preset-react",
+    "@babel/preset-env",
+    [
+      "@emotion/babel-preset-css-prop",
+      {
+        "sourceMap": false
+      }
+    ]
+  ],
   "plugins": [
-    ["@babel/plugin-proposal-decorators", { "legacy": true }]
+    ["@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ]
   ]
 }
