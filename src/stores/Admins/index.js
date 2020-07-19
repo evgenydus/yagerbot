@@ -35,6 +35,16 @@ export default class Admins {
     this.rawData.push(adminData)
   }
 
+  @action
+  removeAdmin(id) {
+    const newAdmins = this.admins.filter(admin => admin.id !== id)
+    const newRawData = this.rawData.filter(admin => admin.id !== id)
+    this.admins.replace(newAdmins)
+    this.rawData.replace(newRawData)
+
+    this.api.deleteAdmin(id)
+  }
+
   load() {
     if (this.isLoaded) return
 

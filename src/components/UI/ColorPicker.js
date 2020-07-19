@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { css } from '@emotion/core'
 import { observer } from 'mobx-react'
 import { GithubPicker } from 'react-color'
 import classnames from 'classnames'
@@ -19,11 +20,18 @@ const ColorPicker = ({ onChange, value }) => {
         className={classnames('cursor-pointer h-8 input-text w-8', {
           'border-primary hover:border-primary': isOpen,
         })}
+        css={css`
+          background: ${value};
+        `}
         onClick={toggleOpen}
-        style={{ backgroundColor: value }}
       />
       {isOpen && (
-        <div className="absolute z-50" style={{ top: '2.5rem' }}>
+        <div
+          className="absolute z-50"
+          css={css`
+            top: 2.5rem;
+          `}
+        >
           <GithubPicker onChange={handleChange} />
         </div>
       )}
