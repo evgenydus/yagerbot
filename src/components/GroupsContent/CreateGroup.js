@@ -4,6 +4,7 @@ import CreateGroupForm from '../../stores/Groups/CreateGroupForm'
 
 import Button from '../UI/Button'
 import CardWrapper from '../CardWrapper'
+import ColorPicker from '../UI/ColorPicker'
 import FormField from '../UI/FormField'
 import Select from '../UI/Select'
 import TextInput from '../UI/TextInput'
@@ -21,21 +22,29 @@ const CreateGroup = ({ groupsStore }) => {
 
   const handleNameChange = ({ target: { value } }) => formStore.setName(value)
 
+  const handleColorChange = color => formStore.setColor(color)
+
   const handleSelectChange = optionsArray => {
     const userIds = optionsArray.map(option => option.value)
     formStore.setUserIds(userIds)
   }
 
   return (
-    <CardWrapper className="inline-flex max-w-sm">
-      <form onSubmit={event => event.preventDefault()}>
+    <CardWrapper className="flex max-w-sm">
+      <formc className="w-full" onSubmit={event => event.preventDefault()}>
         <div className="mb-4">Создание группы</div>
-        <div className="flex justify-between mb-4">
-          <FormField label="Название*">
-            <TextInput autoFocus onChange={handleNameChange} required value={formStore.name} />
+        <div className="flex mb-4">
+          <FormField className="flex-grow" label="Название*">
+            <TextInput
+              autoFocus
+              className="w-full"
+              onChange={handleNameChange}
+              required
+              value={formStore.name}
+            />
           </FormField>
           <FormField className="ml-4" label="Цвет">
-            <TextInput onChange={() => {}} value={formStore.color} />
+            <ColorPicker onChange={handleColorChange} value={formStore.color} />
           </FormField>
         </div>
         <div className="text-sm">
@@ -55,7 +64,7 @@ const CreateGroup = ({ groupsStore }) => {
             Создать
           </Button>
         </div>
-      </form>
+      </formc>
     </CardWrapper>
   )
 }

@@ -27,6 +27,11 @@ export default class CreateGroupForm {
   }
 
   @action
+  setColor(value) {
+    this.color = value
+  }
+
+  @action
   setName(value) {
     this.name = value
   }
