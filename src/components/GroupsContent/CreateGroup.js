@@ -5,6 +5,7 @@ import CreateGroupForm from '../../stores/Groups/CreateGroupForm'
 import Button from '../UI/Button'
 import CardWrapper from '../CardWrapper'
 import FormField from '../UI/FormField'
+import Select from '../UI/Select'
 import TextInput from '../UI/TextInput'
 
 const CreateGroup = ({ groupsStore }) => {
@@ -32,7 +33,9 @@ const CreateGroup = ({ groupsStore }) => {
             <TextInput onChange={() => {}} value={formStore.color} />
           </FormField>
         </div>
-        <div className="text-sm">[Селект с добавлением пользователей]</div>
+        <div className="text-sm">
+          <Select closeMenuOnSelect={false} isMulti options={formStore.usersOptions} />
+        </div>
         <div className="flex justify-end mt-4">
           <Button mode="gray" onClick={toggleCreation}>
             Отмена

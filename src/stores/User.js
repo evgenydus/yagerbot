@@ -1,6 +1,8 @@
 import { action, computed, observable } from 'mobx'
 
 export default class User {
+  usersStore
+
   id = null
   username = ''
   firstName

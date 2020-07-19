@@ -1,16 +1,21 @@
-import { action, observable } from 'mobx'
+import { action, computed, observable } from 'mobx'
 
 export default class CreateGroupForm {
   @observable name = ''
   @observable color = ''
   @observable userIds = []
 
-  constructor(groupsStore, onSuccess) {
+  constructor(groupsStore) {
     this.groupsStore = groupsStore
   }
 
   get api() {
     return this.groupsStore.api
+  }
+
+  @computed
+  get usersOptions() {
+    return this.groupsStore.rootStore.usersStore.users.map(x => ({ label: x.label, value: x.id }))
   }
 
   @action
