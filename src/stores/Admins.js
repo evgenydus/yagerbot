@@ -29,6 +29,12 @@ export default class Admins {
     this.isLoaded = true
   }
 
+  @action
+  addAdmin(adminData) {
+    this.admins.push(new Admin(adminData, this))
+    this.rawData.push(adminData)
+  }
+
   load() {
     if (this.isLoaded) return
 

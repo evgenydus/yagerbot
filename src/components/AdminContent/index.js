@@ -12,7 +12,7 @@ const AdminContent = ({ store }) => {
     <div className="p-4">
       <AdminList admins={store.adminStore.admins} />
       <div className="mt-4">
-        <CreateAdmin />
+        <CreateAdmin adminStore={store.adminStore} />
       </div>
     </div>
   )
