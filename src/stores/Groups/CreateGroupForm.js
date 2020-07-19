@@ -14,8 +14,16 @@ export default class CreateGroupForm {
   }
 
   @computed
-  get usersOptions() {
-    return this.groupsStore.rootStore.usersStore.users.map(x => ({ label: x.label, value: x.id }))
+  get usersAsOptions() {
+    return this.groupsStore.rootStore.usersStore.users.map(user => ({
+      label: user.label,
+      value: user.id,
+    }))
+  }
+
+  @action
+  setUserIds(array) {
+    this.userIds.replace(array)
   }
 
   @action

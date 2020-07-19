@@ -17,15 +17,20 @@ const CreateGroup = ({ groupsStore }) => {
 
   const [formStore] = useState(() => new CreateGroupForm(groupsStore, () => {}))
 
-  const handleNameChange = ({ target: { value } }) => formStore.setName(value)
-
   if (!isCreation) return <Button onClick={toggleCreation}>Новая группа</Button>
 
+  const handleNameChange = ({ target: { value } }) => formStore.setName(value)
+
+  const handleSelectChange = optionsArray => {
+    const userIds = optionsArray.map(option => option.value)
+    formStore.setUserIds(userIds)
+  }
+
   return (
-    <CardWrapper className="inline-flex">
+    <CardWrapper className="inline-flex max-w-sm">
       <form onSubmit={event => event.preventDefault()}>
         <div className="mb-4">Создание группы</div>
-        <div className="flex mb-4">
+        <div className="flex justify-between mb-4">
           <FormField label="Название*">
             <TextInput autoFocus onChange={handleNameChange} required value={formStore.name} />
           </FormField>
@@ -34,7 +39,13 @@ const CreateGroup = ({ groupsStore }) => {
           </FormField>
         </div>
         <div className="text-sm">
-          <Select closeMenuOnSelect={false} isMulti options={formStore.usersOptions} />
+          <Select
+            closeMenuOnSelect={false}
+            isMulti
+            onChange={handleSelectChange}
+            options={formStore.usersAsOptions}
+            placeholder="Выбери пользователей..."
+          />
         </div>
         <div className="flex justify-end mt-4">
           <Button mode="gray" onClick={toggleCreation}>
