@@ -18,7 +18,6 @@ const App = () => {
 
   useEffect(() => {
     if (store.authToken) {
-      // navigate(routes.dashboard)
       store.usersStore.loadUsers()
     } else {
       navigate('/login')

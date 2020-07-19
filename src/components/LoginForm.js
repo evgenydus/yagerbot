@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react'
-import { navigate } from '@reach/router'
 import { observer } from 'mobx-react'
 
 import LoginFormStore from '../stores/LoginForm'
@@ -9,11 +8,7 @@ import TextInput from './UI/TextInput'
 import LoadIndicator from './LoadIndicator'
 
 const LoginForm = ({ store }) => {
-  const goToDashboard = () => navigate('/dashboard')
-
-  const [formStore] = useState(
-    () => new LoginFormStore({ onSuccess: goToDashboard, rootStore: store }),
-  )
+  const [formStore] = useState(() => new LoginFormStore({ rootStore: store }))
 
   const handleUsernameChange = useCallback(
     ({ target: { value } }) => {

@@ -10,9 +10,8 @@ export default class LoginForm {
 
   @observable isLoading = false
 
-  constructor({ onSuccess = () => {}, rootStore }) {
+  constructor({ rootStore }) {
     this.rootStore = rootStore
-    this.onSuccess = onSuccess
   }
 
   get api() {
@@ -63,7 +62,9 @@ export default class LoginForm {
 
     return this.api
       .logIn(this.asJSON)
-      .then(this.onSuccess)
+      .then(({ token }) => {
+        this.rootStore.setAuthToken(token)
+      })
       .catch(error => {
         this.setErrorMessage(error.message)
       })
