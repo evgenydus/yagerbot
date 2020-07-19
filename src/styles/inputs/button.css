@@ -1,5 +1,5 @@
 .btn {
-  @apply border flex items-center justify-center rounded text-white tracking-tight;
+  @apply border flex items-center justify-center leading-none rounded text-white tracking-tight;
 
   min-width: 5rem;
 }
