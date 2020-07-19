@@ -18,13 +18,13 @@ const GroupList = ({ groups }) => (
           ✖
         </div>
         <div
-          className="h-10 mr-4 rounded-full w-10"
+          className="flex-shrink-0 h-10 mr-4 rounded-full w-10"
           css={css`
             background-color: ${group.color};
           `}
         />
-        <div>
-          <div className="mb-1 text-sm">{group.name}</div>
+        <div className="overflow-hidden">
+          <div className="mb-1 text-sm truncate">{group.name}</div>
           <div className="text-xs text-gray-500">{`Участников: ${group.usersCount}`}</div>
         </div>
       </CardWrapper>
