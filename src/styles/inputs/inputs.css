@@ -7,7 +7,7 @@
 }
 
 .input-text:focus {
-  @apply border-highlight;
+  @apply border-primary;
 }
 
 .input-text-sm {

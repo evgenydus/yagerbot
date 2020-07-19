@@ -19,5 +19,7 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    textColor: ['group-hover', 'hover'],
+  },
 }
