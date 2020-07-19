@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Router, navigate } from '@reach/router'
+import { Router, navigate, Redirect } from '@reach/router'
 import { observer } from 'mobx-react'
 import { routes } from './constants'
 import api from './api'
@@ -27,6 +27,7 @@ const App = () => {
 
   return (
     <Router>
+      <Redirect from="/" to={routes.dashboard} />
       <Login path="/login" store={store} />
       <Dashboard path={routes.dashboard} usersStore={store.usersStore} />
       <People path={routes.people} store={store} />
