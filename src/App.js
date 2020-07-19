@@ -7,6 +7,7 @@ import RootStore from './stores'
 
 import Admin from './containers/Admin'
 import Dashboard from './containers/Dashboard'
+import Groups from './containers/Groups'
 import Login from './containers/Login'
 import Messages from './containers/Messages'
 import People from './containers/People'
@@ -29,6 +30,7 @@ const App = () => {
       <Login path="/login" store={store} />
       <Dashboard path={routes.dashboard} usersStore={store.usersStore} />
       <People path={routes.people} store={store} />
+      <Groups path={routes.groups} store={store} />
       <Messages path={routes.messages} store={store} />
       <Reports path={routes.reports} store={store} />
       <Admin path={routes.admin} store={store} />
