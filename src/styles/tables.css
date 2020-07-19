@@ -1,0 +1,11 @@
+.tbl-cell-sm {
+  flex-basis: 4%;
+}
+
+.tbl-cell-md {
+  flex-basis: 15%;
+}
+
+.tbl-cell-lg {
+   flex-basis: 30%;
+ }

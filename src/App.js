@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { Router } from '@reach/router'
 import { observer } from 'mobx-react'
 import RootStore from './stores'
 
+import Dashboard from './containers/Dashboard'
 import Login from './containers/Login'
 
 const App = () => {
@@ -12,9 +14,10 @@ const App = () => {
   }, [store.usersStore])
 
   return (
-    <div>
-      <Login />
-    </div>
+    <Router>
+      <Login path="/" />
+      <Dashboard path="/dashboard" usersStore={store.usersStore} />
+    </Router>
   )
 }
 
