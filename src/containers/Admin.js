@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { observer } from 'mobx-react'
 
 import PageWrapper from '../components/PageWrapper'
-import AdminList from '../components/AdminList'
+import AdminContent from '../components/AdminContent'
 
 const Admin = ({ store }) => {
   useEffect(() => {
@@ -11,13 +11,7 @@ const Admin = ({ store }) => {
 
   return (
     <PageWrapper>
-      <div className="p-4">
-        {store.adminStore.isLoaded ? (
-          <AdminList admins={store.adminStore.admins} />
-        ) : (
-          <div className="text-sm">Загружаю...</div>
-        )}
-      </div>
+      <AdminContent store={store} />
     </PageWrapper>
   )
 }

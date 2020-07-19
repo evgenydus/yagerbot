@@ -5,6 +5,7 @@ import { observer } from 'mobx-react'
 import LoginFormStore from '../stores/LoginForm'
 
 import Button from './UI/Button'
+import TextInput from './UI/TextInput'
 
 const LoginForm = ({ store }) => {
   const goToDashboard = () => navigate('/dashboard')
@@ -35,16 +36,15 @@ const LoginForm = ({ store }) => {
 
   return (
     <form className="flex flex-col w-56" onSubmit={handleSubmit}>
-      <input
+      <TextInput
         autoFocus
-        className="input-text input-text-sm mb-4"
+        className="mb-4"
         onChange={handleUsernameChange}
         placeholder="Логин"
-        type="text"
         value={formStore.username}
       />
-      <input
-        className="input-text input-text-sm mb-4"
+      <TextInput
+        className="mb-4"
         onChange={handlePasswordChange}
         placeholder="Пароль"
         type="password"
@@ -55,13 +55,11 @@ const LoginForm = ({ store }) => {
           {formStore.errorMessage}
         </div>
       )}
-      <div className="flex h-10 items-center justify-center mt-4">
+      <div className="flex h-8 items-center justify-center mt-2">
         {formStore.isLoading ? (
           <div className="text-sm">Подожди...</div>
         ) : (
-          <Button className="btn-primary" type="submit">
-            Войти
-          </Button>
+          <Button type="submit">Войти</Button>
         )}
       </div>
     </form>
