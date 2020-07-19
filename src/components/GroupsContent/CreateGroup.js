@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react'
+import CreateGroupForm from '../../stores/Groups/CreateGroupForm'
+
 import Button from '../UI/Button'
 import CardWrapper from '../CardWrapper'
 import FormField from '../UI/FormField'
 import TextInput from '../UI/TextInput'
 
-const CreateGroup = () => {
+const CreateGroup = ({ groupsStore }) => {
   const [isCreation, setCreation] = useState(false)
 
   const toggleCreation = () => {
     setCreation(!isCreation)
   }
+
+  const [formStore] = useState(() => new CreateGroupForm(groupsStore, () => {}))
+
+  const handleNameChange = ({ target: { value } }) => formStore.setName(value)
 
   if (!isCreation) return <Button onClick={toggleCreation}>Новая группа</Button>
 
@@ -20,10 +26,10 @@ const CreateGroup = () => {
         <div className="mb-4">Создание группы</div>
         <div className="flex mb-4">
           <FormField label="Название*">
-            <TextInput autoFocus required />
+            <TextInput autoFocus onChange={handleNameChange} required value={formStore.name} />
           </FormField>
           <FormField className="ml-4" label="Цвет">
-            <TextInput />
+            <TextInput onChange={() => {}} value={formStore.color} />
           </FormField>
         </div>
         <div className="text-sm">[Селект с добавлением пользователей]</div>

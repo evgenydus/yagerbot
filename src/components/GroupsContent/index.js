@@ -14,7 +14,7 @@ const GroupsContent = ({ store }) => {
         Создай группу, добавь участников, затем при создании сообщения выбери группу, чтобы
         отправить информацию её участникам.
       </div>
-      <CreateGroup />
+      <CreateGroup groupsStore={store.groupsStore} />
     </div>
   )
 }
