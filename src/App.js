@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Router, navigate, Redirect } from '@reach/router'
 import { observer } from 'mobx-react'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+  faHome,
+  faPaperPlane,
+  fas,
+  faTasks,
+  faTools,
+  faUser,
+  faUsers,
+} from '@fortawesome/free-solid-svg-icons'
 import { routes } from './constants'
 import api from './api'
 import RootStore from './stores'
@@ -12,6 +22,8 @@ import Login from './containers/Login'
 import Messages from './containers/Messages'
 import People from './containers/People'
 import Reports from './containers/Reports'
+
+library.add(faHome, faPaperPlane, fas, faTasks, faTools, faUser, faUsers)
 
 const App = () => {
   const [store] = useState(() => new RootStore({ api }))
