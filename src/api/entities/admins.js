@@ -8,11 +8,11 @@ const adminApi = {
   },
 
   deleteAdmin(id) {
-    return makeRequest('delete', `${url}/${id}`)
+    return makeRequest('delete', `${url}${id}/`)
   },
 
   getAdmin(id) {
-    return makeRequest('get', `${url}/${id}`)
+    return makeRequest('get', `${url}${id}/`)
   },
 
   getAdminList() {
@@ -20,7 +20,7 @@ const adminApi = {
   },
 
   updateAdmin(id, payload) {
-    return makeRequest('patch', `${url}/${id}`, payload)
+    return makeRequest('patch', `${url}${id}/`, payload)
   },
 }
 

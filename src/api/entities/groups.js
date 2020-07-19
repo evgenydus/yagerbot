@@ -8,11 +8,11 @@ const groupsApi = {
   },
 
   deleteGroup(id) {
-    return makeRequest('delete', `${url}/${id}`)
+    return makeRequest('delete', `${url}${id}/`)
   },
 
   getGroup(id) {
-    return makeRequest('get', `${url}/${id}`)
+    return makeRequest('get', `${url}${id}/`)
   },
 
   getGroupList() {
@@ -20,7 +20,7 @@ const groupsApi = {
   },
 
   updateGroup(id, payload) {
-    return makeRequest('patch', `${url}/${id}`, payload)
+    return makeRequest('patch', `${url}${id}/`, payload)
   },
 }
 

@@ -10,7 +10,7 @@ export default class GroupModel {
   isActive
 
   constructor({ color, id, is_active, members, name }, groups) {
-    this.admins = groups
+    this.groups = groups
 
     this.id = id
     this.userIds = members.map(member => member.id)
@@ -22,5 +22,9 @@ export default class GroupModel {
   @computed
   get usersCount() {
     return this.userIds.length
+  }
+
+  destroy = () => {
+    this.groups.removeGroup(this.id)
   }
 }

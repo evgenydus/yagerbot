@@ -34,6 +34,16 @@ export default class Groups {
   }
 
   @action
+  removeGroup(id) {
+    const newGroups = this.groups.filter(group => group.id !== id)
+    const newRawData = this.rawData.filter(group => group.id !== id)
+    this.groups.replace(newGroups)
+    this.rawData.replace(newRawData)
+
+    this.api.deleteGroup(id)
+  }
+
+  @action
   load() {
     this.api.getGroupList().then(groupsData => {
       this.setRawData(groupsData)
