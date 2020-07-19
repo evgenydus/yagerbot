@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import CardWrapper from './CardWrapper'
+import CardWrapper from '../CardWrapper'
 
 const AdminList = ({ admins }) => (
   <div className="grid gap-4 grid-cols-4">

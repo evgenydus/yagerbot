@@ -1,6 +1,6 @@
-import { observable } from 'mobx'
+import { computed, observable } from 'mobx'
 
-export default class Group {
+export default class GroupModel {
   groups
 
   id
@@ -17,5 +17,10 @@ export default class Group {
     this.name = name
     this.color = color
     this.isActive = is_active
+  }
+
+  @computed
+  get usersCount() {
+    return this.userIds.length
   }
 }

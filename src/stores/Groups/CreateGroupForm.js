@@ -13,6 +13,13 @@ export default class CreateGroupForm {
     return this.groupsStore.api
   }
 
+  get requestPayload() {
+    return {
+      color: this.color,
+      name: this.name,
+    }
+  }
+
   @computed
   get usersAsOptions() {
     return this.groupsStore.rootStore.usersStore.users.map(user => ({
@@ -34,5 +41,11 @@ export default class CreateGroupForm {
   @action
   setName(value) {
     this.name = value
+  }
+
+  sendData() {
+    return this.api.createGroup(this.requestPayload).then(groupData => {
+      this.groupsStore.addGroup(groupData)
+    })
   }
 }

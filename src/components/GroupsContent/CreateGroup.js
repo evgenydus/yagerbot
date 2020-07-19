@@ -29,9 +29,14 @@ const CreateGroup = ({ groupsStore }) => {
     formStore.setUserIds(userIds)
   }
 
+  const handleSubmit = event => {
+    event.preventDefault()
+    formStore.sendData().then(toggleCreation)
+  }
+
   return (
     <CardWrapper className="flex max-w-sm">
-      <formc className="w-full" onSubmit={event => event.preventDefault()}>
+      <form className="w-full" onSubmit={handleSubmit}>
         <div className="mb-4">Создание группы</div>
         <div className="flex mb-4">
           <FormField className="flex-grow" label="Название*">
@@ -64,7 +69,7 @@ const CreateGroup = ({ groupsStore }) => {
             Создать
           </Button>
         </div>
-      </formc>
+      </form>
     </CardWrapper>
   )
 }

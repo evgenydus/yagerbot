@@ -1,4 +1,5 @@
 import { action, observable } from 'mobx'
+import GroupModel from './GroupModel'
 
 export default class Groups {
   rootStore
@@ -22,9 +23,24 @@ export default class Groups {
   }
 
   @action
+  setGroups(array) {
+    this.groups.replace(array)
+  }
+
+  @action
+  addGroup(groupData) {
+    this.rawData.push(groupData)
+    this.groups.push(new GroupModel(groupData, this))
+  }
+
+  @action
   load() {
-    this.api.getGroupList().then(data => {
-      this.setRawData(data)
+    this.api.getGroupList().then(groupsData => {
+      this.setRawData(groupsData)
+
+      const groups = groupsData.map(group => new GroupModel(group, this))
+
+      this.setGroups(groups)
     })
   }
 }
