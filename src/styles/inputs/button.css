@@ -1,11 +1,11 @@
 .btn {
-  @apply border rounded text-white;
+  @apply border flex items-center justify-center rounded text-white tracking-tight;
 
   min-width: 5rem;
 }
 
 .btn-sm {
-  @apply h-10 px-4;
+  @apply h-8 px-4 text-sm;
 }
 
 .btn-primary {
@@ -17,11 +17,19 @@
 }
 
 .btn-secondary {
-  @apply bg-white border-primary-dark text-primary;
+  @apply border-primary-dark text-primary;
 }
 
 .btn-secondary:hover {
   @apply bg-primary-dark text-white;
+}
+
+.btn-gray {
+  @apply border-gray-500 text-gray-500;
+}
+
+.btn-gray:hover {
+  @apply bg-gray-500 text-white;
 }
 
 .link {

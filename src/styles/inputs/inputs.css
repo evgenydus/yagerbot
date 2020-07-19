@@ -1,5 +1,5 @@
 .input-text {
-  @apply border border-gray-400 rounded;
+  @apply border border-gray-400 rounded tracking-tight;
 }
 
 .input-text:hover {
@@ -11,5 +11,5 @@
 }
 
 .input-text-sm {
-  @apply px-2 py-1;
+  @apply px-2 py-1 text-sm;
 }
