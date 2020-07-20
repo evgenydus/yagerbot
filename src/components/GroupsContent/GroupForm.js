@@ -10,7 +10,7 @@ import TextInput from '../UI/TextInput'
 
 import FormButtons from './FormButtons'
 
-const GroupForm = ({ group, groupsStore, toggleForm }) => {
+const GroupForm = ({ group, groupsStore }) => {
   const [formStore] = useState(() => new GroupFormStore(groupsStore, group))
 
   const nameInputRef = useRef(null)
@@ -37,7 +37,7 @@ const GroupForm = ({ group, groupsStore, toggleForm }) => {
 
     formStore
       .sendData()
-      .then(toggleForm)
+      .then(groupsStore.toggleGroupCreation)
       .catch(() => {
         nameInputRef.current.focus()
       })
@@ -77,7 +77,7 @@ const GroupForm = ({ group, groupsStore, toggleForm }) => {
           <FormButtons
             groupId={formStore.id}
             isLoading={formStore.isLoading}
-            onCancel={formStore.id ? formStore.cancelEdit : toggleForm}
+            onCancel={formStore.id ? formStore.cancelEdit : groupsStore.toggleGroupCreation}
           />
         </div>
       </form>

@@ -8,6 +8,7 @@ export default class Groups {
   @observable groups = []
   @observable isLoaded = false
   @observable groupToEdit = null
+  @observable isGroupCreation
 
   constructor(rootStore) {
     this.rootStore = rootStore
@@ -15,6 +16,11 @@ export default class Groups {
 
   get api() {
     return this.rootStore.api.groups
+  }
+
+  @action
+  toggleGroupCreation = () => {
+    this.isGroupCreation = !this.isGroupCreation
   }
 
   @action
@@ -30,6 +36,7 @@ export default class Groups {
 
   @action
   setGroupToEdit(group) {
+    this.isGroupCreation = false
     this.groupToEdit = group
   }
 

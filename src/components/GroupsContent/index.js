@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import CreateGroup from './CreateGroup'
+import CreateGroup from './ManageGroup'
 import GroupList from './GroupList'
 import LoadIndicator from '../LoadIndicator'
 
