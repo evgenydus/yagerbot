@@ -13,7 +13,7 @@ const ExactNavLink = ({ icon, label, ...props }) => {
       {...props}
     >
       <div
-        className={classnames('mr-3 text-center w-5', {
+        className={classnames('mr-2 text-center w-6', {
           'group-hover:text-primary text-gray-600': !match,
         })}
       >
