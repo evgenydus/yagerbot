@@ -34,6 +34,9 @@ const CreateGroup = ({ groupsStore }) => {
 
   const handleSubmit = event => {
     event.preventDefault()
+
+    if (formStore.isLoading) return
+
     formStore
       .sendData()
       .then(toggleCreation)
