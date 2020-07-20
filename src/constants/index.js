@@ -17,12 +17,12 @@ export const pageNames = {
 }
 
 export const pageIcons = {
-  [pages.admin]: 'XXX',
-  [pages.dashboard]: '',
-  [pages.groups]: 'G',
-  [pages.messages]: '',
-  [pages.people]: '',
-  [pages.reports]: '',
+  [pages.admin]: ['far', 'tools'],
+  [pages.dashboard]: ['far', 'home-lg'],
+  [pages.groups]: ['far', 'ball-pile'],
+  [pages.messages]: ['far', 'inbox-out'],
+  [pages.people]: ['far', 'users-crown'],
+  [pages.reports]: ['far', 'clipboard-list'],
 }
 
 export const navigationItems = [
