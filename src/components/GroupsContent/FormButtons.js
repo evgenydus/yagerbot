@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 import Button from '../UI/Button'
 import LoadIndicator from '../LoadIndicator'
 
-const FormButtons = ({ isLoading, onCancel }) => {
+const FormButtons = ({ groupId, isLoading, onCancel }) => {
   if (isLoading) return <LoadIndicator />
 
   return (
@@ -12,7 +12,7 @@ const FormButtons = ({ isLoading, onCancel }) => {
         Отмена
       </Button>
       <Button className="ml-2" type="submit">
-        Создать
+        {groupId ? <div>Сохранить</div> : <div>Создать</div>}
       </Button>
     </div>
   )

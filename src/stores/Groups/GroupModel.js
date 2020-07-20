@@ -9,8 +9,8 @@ export default class GroupModel {
   @observable color = ''
   isActive
 
-  constructor({ color, id, is_active, members, name }, groups) {
-    this.groups = groups
+  constructor({ color, id, is_active, members, name }, groupsStore) {
+    this.groupsStore = groupsStore
 
     this.id = id
     this.userIds = members.map(member => member.id)
@@ -24,7 +24,17 @@ export default class GroupModel {
     return this.userIds.length
   }
 
+  @computed
+  get isEditInProgress() {
+    return Boolean(this.groupsStore.groupToEdit)
+  }
+
+  edit = () => {
+    this.groupsStore.setGroupToEdit(this)
+  }
+
   destroy = () => {
-    this.groups.removeGroup(this.id)
+    this.groupsStore.setGroupToEdit(null)
+    this.groupsStore.removeGroup(this.id)
   }
 }

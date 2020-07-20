@@ -7,6 +7,7 @@ export default class Groups {
   @observable rawData = []
   @observable groups = []
   @observable isLoaded = false
+  @observable groupToEdit = null
 
   constructor(rootStore) {
     this.rootStore = rootStore
@@ -28,9 +29,23 @@ export default class Groups {
   }
 
   @action
+  setGroupToEdit(group) {
+    this.groupToEdit = group
+  }
+
+  @action
   addGroup(groupData) {
     this.rawData.push(groupData)
     this.groups.push(new GroupModel(groupData, this))
+  }
+
+  @action
+  updateGroup({ group, rawGroup }) {
+    const rawGroupIndex = this.rawData.findIndex(g => g.id === rawGroup.id)
+    this.rawData.splice(rawGroupIndex, 1, rawGroup)
+
+    const groupIndex = this.groups.findIndex(g => g.id === group.id)
+    this.groups.splice(groupIndex, 1, group)
   }
 
   @action
