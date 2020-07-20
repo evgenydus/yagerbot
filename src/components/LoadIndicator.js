@@ -4,9 +4,9 @@ import { observer } from 'mobx-react'
 import classnames from 'classnames'
 import getRandomNumber from '../utils/getRandomNumber'
 
-const dragAnimation = keyframes`
+const bounceAnimation = keyframes`
   from, 20%, 53%, 80%, to {
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
   }
 
   40%, 43% {
@@ -18,7 +18,7 @@ const dragAnimation = keyframes`
   }
 
   90% {
-    transform: translate3d(0,-4px,0);
+    transform: translate3d(0, -4px, 0);
   }
 `
 
@@ -53,7 +53,7 @@ const LoadIndicator = ({ className, label }) => {
         className,
       )}
       css={css`
-        animation: 1s ${dragAnimation} ease-in-out infinite;
+        animation: 1s ${bounceAnimation} ease-in-out infinite;
       `}
     >
       {`${label || randomLabel}...`}
