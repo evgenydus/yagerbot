@@ -21,5 +21,6 @@ module.exports = {
   },
   variants: {
     textColor: ['group-hover', 'hover'],
+    visibility: ['group-hover', 'hover'],
   },
 }

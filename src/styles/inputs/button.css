@@ -33,9 +33,17 @@
 }
 
 .link {
-  @apply text-gray-800;
+  @apply cursor-pointer text-gray-800;
 }
 
 .link:hover {
   @apply text-primary
+}
+
+.link-alert {
+  @apply cursor-pointer text-gray-800;
+}
+
+.link-alert:hover {
+  @apply text-red-600
 }
