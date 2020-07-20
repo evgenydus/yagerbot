@@ -7,7 +7,7 @@ import ActionIcons from '../ActionIcons'
 import CardWrapper from '../CardWrapper'
 
 const GroupCard = ({ group }) => (
-  <CardWrapper className="flex group relative">
+  <CardWrapper className="flex group relative" isActive={group.isActive}>
     {!group.isEditInProgress && <ActionIcons item={group} />}
     <div
       className="flex flex-shrink-0 h-10 items-center justify-center mr-4 rounded-full text-white w-10"

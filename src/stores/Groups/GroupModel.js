@@ -7,7 +7,6 @@ export default class GroupModel {
   userIds = []
   @observable name = ''
   @observable color = ''
-  isActive
 
   constructor({ color, id, is_active, members, name }, groupsStore) {
     this.groupsStore = groupsStore
@@ -16,7 +15,6 @@ export default class GroupModel {
     this.userIds = members.map(member => member.id)
     this.name = name
     this.color = color
-    this.isActive = is_active
   }
 
   @computed
@@ -27,6 +25,11 @@ export default class GroupModel {
   @computed
   get isEditInProgress() {
     return Boolean(this.groupsStore.groupToEdit)
+  }
+
+  @computed
+  get isActive() {
+    return this.groupsStore.groupToEdit?.id === this.id
   }
 
   edit = () => {
