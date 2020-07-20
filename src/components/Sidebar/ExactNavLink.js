@@ -12,8 +12,12 @@ const ExactNavLink = ({ icon, label, ...props }) => {
       className={classnames('flex group items-center my-2 py-1', match ? 'text-primary' : 'link')}
       {...props}
     >
-      <div className={classnames('mr-3', { 'group-hover:text-primary text-gray-600': !match })}>
-        {<FontAwesomeIcon icon={icon} /> || '[ICN]'}
+      <div
+        className={classnames('mr-3 text-center w-5', {
+          'group-hover:text-primary text-gray-600': !match,
+        })}
+      >
+        <FontAwesomeIcon icon={icon} />
       </div>
       {label}
     </Link>

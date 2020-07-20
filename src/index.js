@@ -4,6 +4,7 @@ import { observerBatching } from 'mobx-react'
 
 import App from './App'
 
+import './fontAwesome'
 import './styles/index.css'
 
 observerBatching()
