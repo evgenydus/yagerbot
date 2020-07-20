@@ -1,4 +1,5 @@
 import React from 'react'
+import { css } from '@emotion/core'
 import { observer } from 'mobx-react'
 import CardWrapper from '../CardWrapper'
 
@@ -8,14 +9,22 @@ const GroupList = ({ groups }) => (
       <CardWrapper key={group.id} className="flex relative">
         <div
           className="absolute cursor-pointer hover:bg-red-300 leading-none opacity-75 right-0 rounded top-0"
+          css={css`
+            right: 5px;
+            top: 5px;
+          `}
           onClick={group.destroy}
-          style={{ right: '5px', top: '5px' }}
         >
           ✖
         </div>
-        <div className="h-10 mr-4 rounded-full w-10" style={{ backgroundColor: group.color }} />
-        <div>
-          <div className="mb-1 text-sm">{group.name}</div>
+        <div
+          className="flex-shrink-0 h-10 mr-4 rounded-full w-10"
+          css={css`
+            background-color: ${group.color};
+          `}
+        />
+        <div className="overflow-hidden">
+          <div className="mb-1 text-sm truncate">{group.name}</div>
           <div className="text-xs text-gray-500">{`Участников: ${group.usersCount}`}</div>
         </div>
       </CardWrapper>

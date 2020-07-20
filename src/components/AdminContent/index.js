@@ -2,10 +2,15 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import AdminList from './AdminList'
 import CreateAdmin from './CreateAdmin'
+import LoadIndicator from '../LoadIndicator'
 
 const AdminContent = ({ store }) => {
   if (!store.adminStore.isLoaded) {
-    return <div className="p-4 text-sm">Загружаю...</div>
+    return (
+      <div className="inline-block p-4">
+        <LoadIndicator />
+      </div>
+    )
   }
 
   return (
