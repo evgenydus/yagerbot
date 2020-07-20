@@ -1,6 +1,8 @@
 import { action, computed, observable } from 'mobx'
 
-export default class User {
+export default class UserModel {
+  usersStore
+
   id = null
   username = ''
   firstName

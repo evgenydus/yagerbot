@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import AdminList from '../AdminList'
+import AdminList from './AdminList'
 import CreateAdmin from './CreateAdmin'
 
 const AdminContent = ({ store }) => {

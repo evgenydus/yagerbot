@@ -4,7 +4,7 @@ import Logo from './Logo'
 import Navigation from './Navigation'
 
 const Sidebar = () => (
-  <div className="border-r border-l w-48">
+  <div className="border-r border-l flex-shrink-0 w-48">
     <Logo />
     <Navigation />
   </div>

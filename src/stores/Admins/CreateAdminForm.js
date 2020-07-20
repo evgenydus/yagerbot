@@ -1,19 +1,19 @@
 import { action, observable } from 'mobx'
 
 export default class CreateAdminForm {
-  adminStore
+  adminsStore
 
   @observable username = ''
   @observable password = ''
   @observable firstName = ''
   @observable lastName = ''
 
-  constructor(adminStore) {
-    this.adminStore = adminStore
+  constructor(adminsStore) {
+    this.adminsStore = adminsStore
   }
 
   get api() {
-    return this.adminStore.api
+    return this.adminsStore.api
   }
 
   get requestPayload() {
@@ -56,7 +56,7 @@ export default class CreateAdminForm {
 
   sendData() {
     return this.api.createAdmin(this.requestPayload).then(adminData => {
-      this.adminStore.addAdmin(adminData)
+      this.adminsStore.addAdmin(adminData)
       this.resetForm()
     })
   }

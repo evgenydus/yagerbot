@@ -1,18 +1,14 @@
 import React, { useCallback, useState } from 'react'
-import { navigate } from '@reach/router'
 import { observer } from 'mobx-react'
 
 import LoginFormStore from '../stores/LoginForm'
 
 import Button from './UI/Button'
 import TextInput from './UI/TextInput'
+import LoadIndicator from './LoadIndicator'
 
 const LoginForm = ({ store }) => {
-  const goToDashboard = () => navigate('/dashboard')
-
-  const [formStore] = useState(
-    () => new LoginFormStore({ onSuccess: goToDashboard, rootStore: store }),
-  )
+  const [formStore] = useState(() => new LoginFormStore({ rootStore: store }))
 
   const handleUsernameChange = useCallback(
     ({ target: { value } }) => {
@@ -55,11 +51,13 @@ const LoginForm = ({ store }) => {
           {formStore.errorMessage}
         </div>
       )}
-      <div className="flex h-8 items-center justify-center mt-2">
+      <div className="mt-2">
         {formStore.isLoading ? (
-          <div className="text-sm">Подожди...</div>
+          <LoadIndicator />
         ) : (
-          <Button type="submit">Войти</Button>
+          <Button className="mx-auto" type="submit">
+            Войти
+          </Button>
         )}
       </div>
     </form>
