@@ -1,8 +1,10 @@
 import { action, computed, observable } from 'mobx'
+import AdminModel from './AdminModel'
 
 export default class AdminForm {
   adminsStore
 
+  id = null
   @observable username = ''
   @observable password = ''
   @observable firstName = ''
@@ -10,8 +12,15 @@ export default class AdminForm {
 
   @observable isLoading = false
 
-  constructor(adminsStore) {
+  constructor(adminsStore, admin) {
     this.adminsStore = adminsStore
+
+    if (admin) {
+      this.id = admin.id
+      this.username = admin.username
+      this.firstName = admin.firstName
+      this.lastName = admin.lastName
+    }
   }
 
   get api() {
@@ -59,6 +68,28 @@ export default class AdminForm {
     this.password = ''
     this.firstName = ''
     this.lastName = ''
+  }
+
+  cancelEdit = () => {
+    this.adminsStore.adminToEdit = null
+  }
+
+  @action
+  updateData = () => {
+    this.isLoading = true
+
+    this.api
+      .updateAdmin(this.id, this.requestPayload)
+      .then(adminData => {
+        this.adminsStore.updateAdmin({
+          admin: new AdminModel(adminData, this.adminsStore),
+          rawAdmin: adminData,
+        })
+        this.cancelEdit()
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
   }
 
   sendData() {

@@ -3,12 +3,12 @@ import { observer } from 'mobx-react'
 import AdminFormStore from '../../stores/Admins/AdminForm'
 
 import CardWrapper from '../CardWrapper'
-import FormButtons from '../GroupsContent/FormButtons'
+import FormButtons from '../UI/FormButtons'
 import FormField from '../UI/FormField'
 import TextInput from '../UI/TextInput'
 
-const AdminForm = ({ adminStore }) => {
-  const [formStore] = useState(() => new AdminFormStore(adminStore))
+const AdminForm = ({ admin, adminStore }) => {
+  const [formStore] = useState(() => new AdminFormStore(adminStore, admin))
 
   const handleUsernameChange = ({ target: { value } }) => formStore.setUsername(value)
   const handlePasswordChange = ({ target: { value } }) => formStore.setPassword(value)
@@ -19,6 +19,12 @@ const AdminForm = ({ adminStore }) => {
     event.preventDefault()
 
     if (formStore.isLoading) return
+
+    if (formStore.id) {
+      formStore.updateData()
+
+      return
+    }
 
     formStore.sendData().then(adminStore.toggleAdminCreation)
   }
@@ -54,7 +60,11 @@ const AdminForm = ({ adminStore }) => {
           </FormField>
         </div>
         <div className="mt-4">
-          <FormButtons isLoading={formStore.isLoading} onCancel={adminStore.toggleAdminCreation} />
+          <FormButtons
+            isLoading={formStore.isLoading}
+            itemId={formStore.id}
+            onCancel={formStore.id ? formStore.cancelEdit : adminStore.toggleAdminCreation}
+          />
         </div>
       </form>
     </CardWrapper>
