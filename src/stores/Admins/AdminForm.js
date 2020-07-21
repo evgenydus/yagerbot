@@ -1,12 +1,14 @@
-import { action, observable } from 'mobx'
+import { action, computed, observable } from 'mobx'
 
-export default class CreateAdminForm {
+export default class AdminForm {
   adminsStore
 
   @observable username = ''
   @observable password = ''
   @observable firstName = ''
   @observable lastName = ''
+
+  @observable isLoading = false
 
   constructor(adminsStore) {
     this.adminsStore = adminsStore
@@ -24,6 +26,11 @@ export default class CreateAdminForm {
       role: 'admin',
       username: this.username,
     }
+  }
+
+  @computed
+  get isValid() {
+    return this.username.trim() && this.password.trim()
   }
 
   @action
@@ -55,9 +62,18 @@ export default class CreateAdminForm {
   }
 
   sendData() {
-    return this.api.createAdmin(this.requestPayload).then(adminData => {
-      this.adminsStore.addAdmin(adminData)
-      this.resetForm()
-    })
+    if (!this.isValid) return Promise.reject()
+
+    this.isLoading = true
+
+    return this.api
+      .createAdmin(this.requestPayload)
+      .then(adminData => {
+        this.adminsStore.addAdmin(adminData)
+        this.resetForm()
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
   }
 }

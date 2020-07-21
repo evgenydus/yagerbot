@@ -8,6 +8,7 @@ export default class Admins {
   @observable admins = []
 
   @observable isLoaded = false
+  @observable isAdminCreation
 
   constructor(rootStore) {
     this.rootStore = rootStore
@@ -15,6 +16,11 @@ export default class Admins {
 
   get api() {
     return this.rootStore.api.admins
+  }
+
+  @action
+  toggleAdminCreation = () => {
+    this.isAdminCreation = !this.isAdminCreation
   }
 
   @action

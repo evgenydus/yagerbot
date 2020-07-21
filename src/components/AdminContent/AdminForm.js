@@ -1,21 +1,14 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react'
-import CreateAdminForm from '../../stores/Admins/CreateAdminForm'
+import AdminFormStore from '../../stores/Admins/AdminForm'
 
-import Button from '../UI/Button'
 import CardWrapper from '../CardWrapper'
+import FormButtons from '../GroupsContent/FormButtons'
 import FormField from '../UI/FormField'
 import TextInput from '../UI/TextInput'
 
-const CreateAdmin = ({ adminStore }) => {
-  const [isCreation, setCreation] = useState(false)
-  const [formStore] = useState(() => new CreateAdminForm(adminStore))
-
-  const toggleCreation = () => {
-    setCreation(!isCreation)
-  }
-
-  if (!isCreation) return <Button onClick={toggleCreation}>Новый админ</Button>
+const AdminForm = ({ adminStore }) => {
+  const [formStore] = useState(() => new AdminFormStore(adminStore))
 
   const handleUsernameChange = ({ target: { value } }) => formStore.setUsername(value)
   const handlePasswordChange = ({ target: { value } }) => formStore.setPassword(value)
@@ -25,7 +18,9 @@ const CreateAdmin = ({ adminStore }) => {
   const handleSubmit = event => {
     event.preventDefault()
 
-    formStore.sendData().then(toggleCreation)
+    if (formStore.isLoading) return
+
+    formStore.sendData().then(adminStore.toggleAdminCreation)
   }
 
   return (
@@ -58,17 +53,12 @@ const CreateAdmin = ({ adminStore }) => {
             <TextInput onChange={handleLastNameChange} value={formStore.lastName} />
           </FormField>
         </div>
-        <div className="flex justify-end mt-4">
-          <Button mode="gray" onClick={toggleCreation}>
-            Отмена
-          </Button>
-          <Button className="ml-2" type="submit">
-            Создать
-          </Button>
+        <div className="mt-4">
+          <FormButtons isLoading={formStore.isLoading} onCancel={adminStore.toggleAdminCreation} />
         </div>
       </form>
     </CardWrapper>
   )
 }
 
-export default observer(CreateAdmin)
+export default observer(AdminForm)
