@@ -4,11 +4,11 @@ export default class GroupModel {
   groups
 
   id
-  userIds = []
+  @observable userIds = []
   @observable name = ''
   @observable color = ''
 
-  constructor({ color, id, is_active, members, name }, groupsStore) {
+  constructor({ color, id, members, name }, groupsStore) {
     this.groupsStore = groupsStore
 
     this.id = id
