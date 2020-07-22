@@ -42,3 +42,23 @@ const getRoutes = items =>
   }, {})
 
 export const routes = getRoutes(navigationItems)
+
+export const colors = {
+  alert: '#e53e3e',
+  gray: {
+    basic: '#cbd5e0',
+    dark: '#a0aec0',
+    light: '#e2e8f0',
+  },
+  highlight: '#c05621',
+  primary: {
+    basic: '#38b2ac',
+    dark: '#319795',
+    light: '#4fd1c5',
+  },
+  secondary: {
+    basic: '#d53f8c',
+    dark: '#b83280',
+    light: '#ed64a6',
+  },
+}
