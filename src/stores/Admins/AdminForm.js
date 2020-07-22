@@ -75,7 +75,7 @@ export default class AdminForm {
   }
 
   @action
-  updateData = () => {
+  updateData() {
     this.isLoading = true
 
     this.api

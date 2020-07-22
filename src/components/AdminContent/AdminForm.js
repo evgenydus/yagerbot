@@ -32,7 +32,9 @@ const AdminForm = ({ admin, adminStore }) => {
   return (
     <CardWrapper className="inline-flex">
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">Создание админа</div>
+        <div className="mb-4">
+          {formStore.id ? <div>Редактирование админа</div> : <div>Создание админа</div>}
+        </div>
         <div className="flex mb-4">
           <FormField label="Логин*">
             <TextInput
