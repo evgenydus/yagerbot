@@ -4,12 +4,12 @@ import GroupFormStore from '../../stores/Groups/GroupForm'
 
 import CardWrapper from '../CardWrapper'
 import ColorPicker from '../UI/ColorPicker'
-import FormButtons from './FormButtons'
+import FormButtons from '../UI/FormButtons'
 import FormField from '../UI/FormField'
 import Select from '../UI/Select'
 import TextInput from '../UI/TextInput'
 
-import selectGroupStyles from '../../styles/select'
+import selectStyles from '../UI/Select/styles'
 
 const GroupForm = ({ group, groupsStore }) => {
   const [formStore] = useState(() => new GroupFormStore(groupsStore, group))
@@ -72,7 +72,7 @@ const GroupForm = ({ group, groupsStore }) => {
             onChange={handleSelectChange}
             options={formStore.usersAsOptions}
             placeholder="Выбери пользователей..."
-            styles={selectGroupStyles}
+            styles={selectStyles}
           />
         </div>
         <div className="mt-4">
