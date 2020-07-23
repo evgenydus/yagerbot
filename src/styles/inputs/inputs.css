@@ -11,5 +11,5 @@
 }
 
 .input-text-sm {
-  @apply px-2 py-1 text-sm;
+  @apply h-8 px-2 text-sm;
 }
