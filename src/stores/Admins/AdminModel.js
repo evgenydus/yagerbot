@@ -12,4 +12,8 @@ export default class AdminModel {
     this.username = username
     this.createdAt = new Date(created_at).toLocaleDateString()
   }
+
+  destroy = () => {
+    this.adminsStore.removeAdmin(this.id)
+  }
 }

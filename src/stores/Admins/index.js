@@ -8,6 +8,7 @@ export default class Admins {
   @observable admins = []
 
   @observable isLoaded = false
+  @observable isAdminCreation
 
   constructor(rootStore) {
     this.rootStore = rootStore
@@ -15,6 +16,11 @@ export default class Admins {
 
   get api() {
     return this.rootStore.api.admins
+  }
+
+  @action
+  toggleAdminCreation = () => {
+    this.isAdminCreation = !this.isAdminCreation
   }
 
   @action
@@ -33,6 +39,16 @@ export default class Admins {
   addAdmin(adminData) {
     this.admins.push(new AdminModel(adminData, this))
     this.rawData.push(adminData)
+  }
+
+  @action
+  removeAdmin(id) {
+    const newAdmins = this.admins.filter(admin => admin.id !== id)
+    const newRawData = this.rawData.filter(admin => admin.id !== id)
+    this.admins.replace(newAdmins)
+    this.rawData.replace(newRawData)
+
+    this.api.deleteAdmin(id)
   }
 
   load() {

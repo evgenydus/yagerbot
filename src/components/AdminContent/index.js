@@ -1,8 +1,9 @@
 import React from 'react'
 import { observer } from 'mobx-react'
+
 import AdminList from './AdminList'
-import CreateAdmin from './CreateAdmin'
 import LoadIndicator from '../LoadIndicator'
+import ManageAdmin from './ManageAdmin'
 
 const AdminContent = ({ store }) => {
   if (!store.adminStore.isLoaded) {
@@ -17,7 +18,7 @@ const AdminContent = ({ store }) => {
     <div className="p-4">
       <AdminList admins={store.adminStore.admins} />
       <div className="mt-4">
-        <CreateAdmin adminStore={store.adminStore} />
+        <ManageAdmin adminStore={store.adminStore} />
       </div>
     </div>
   )
