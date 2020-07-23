@@ -9,8 +9,6 @@ import FormField from '../UI/FormField'
 import Select from '../UI/Select'
 import TextInput from '../UI/TextInput'
 
-import selectStyles from '../UI/Select/styles'
-
 const GroupForm = ({ group, groupsStore }) => {
   const [formStore] = useState(() => new GroupFormStore(groupsStore, group))
 
@@ -72,7 +70,6 @@ const GroupForm = ({ group, groupsStore }) => {
             onChange={handleSelectChange}
             options={formStore.usersAsOptions}
             placeholder="Выбери пользователей..."
-            styles={selectStyles}
           />
         </div>
         <div className="mt-4">

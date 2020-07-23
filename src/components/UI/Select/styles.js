@@ -35,6 +35,10 @@ const selectStyles = {
     ...base,
     backgroundColor: '#e2e8f0',
   }),
+  multiValueLabel: base => ({
+    ...base,
+    padding: '2px',
+  }),
   multiValueRemove: base => ({
     ...base,
     '&:hover': {
