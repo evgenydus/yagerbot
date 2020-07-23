@@ -5,7 +5,9 @@ module.exports = {
     outline: false,
   },
   plugins: [],
-  purge: [],
+  purge: {
+    content: ['./src/**/*.html', './src/**/*.js'],
+  },
   theme: {
     extend: {
       colors: {
