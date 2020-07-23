@@ -8,6 +8,7 @@ export default class Admins {
   @observable admins = []
 
   @observable isLoaded = false
+  @observable adminToEdit = null
   @observable isAdminCreation
 
   constructor(rootStore) {
@@ -26,19 +27,33 @@ export default class Admins {
   @action
   setRawData(array) {
     this.rawData.replace(array)
+    this.isLoaded = true
   }
 
   @action
   setAdmins(array) {
     this.admins.replace(array)
+  }
 
-    this.isLoaded = true
+  @action
+  setAdminToEdit(admin) {
+    this.isAdminCreation = false
+    this.adminToEdit = admin
   }
 
   @action
   addAdmin(adminData) {
     this.admins.push(new AdminModel(adminData, this))
     this.rawData.push(adminData)
+  }
+
+  @action
+  updateAdmin({ admin, rawAdmin }) {
+    const rawAdminIndex = this.rawData.findIndex(a => a.id === rawAdmin.id)
+    this.rawData.splice(rawAdminIndex, 1, rawAdmin)
+
+    const adminIndex = this.admins.findIndex(a => a.id === admin.id)
+    this.admins.splice(adminIndex, 1, admin)
   }
 
   @action

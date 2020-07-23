@@ -8,7 +8,7 @@ import FormField from '../UI/FormField'
 import Select from '../UI/Select'
 import TextInput from '../UI/TextInput'
 
-import FormButtons from './FormButtons'
+import FormButtons from '../UI/FormButtons'
 
 const GroupForm = ({ group, groupsStore }) => {
   const [formStore] = useState(() => new GroupFormStore(groupsStore, group))
@@ -75,8 +75,8 @@ const GroupForm = ({ group, groupsStore }) => {
         </div>
         <div className="mt-4">
           <FormButtons
-            groupId={formStore.id}
             isLoading={formStore.isLoading}
+            itemId={formStore.id}
             onCancel={formStore.id ? formStore.cancelEdit : groupsStore.toggleGroupCreation}
           />
         </div>

@@ -3,12 +3,12 @@ import { observer } from 'mobx-react'
 import AdminFormStore from '../../stores/Admins/AdminForm'
 
 import CardWrapper from '../CardWrapper'
-import FormButtons from '../GroupsContent/FormButtons'
+import FormButtons from '../UI/FormButtons'
 import FormField from '../UI/FormField'
 import TextInput from '../UI/TextInput'
 
-const AdminForm = ({ adminStore }) => {
-  const [formStore] = useState(() => new AdminFormStore(adminStore))
+const AdminForm = ({ admin, adminStore }) => {
+  const [formStore] = useState(() => new AdminFormStore(adminStore, admin))
 
   const handleUsernameChange = ({ target: { value } }) => formStore.setUsername(value)
   const handlePasswordChange = ({ target: { value } }) => formStore.setPassword(value)
@@ -20,13 +20,21 @@ const AdminForm = ({ adminStore }) => {
 
     if (formStore.isLoading) return
 
+    if (formStore.id) {
+      formStore.updateData()
+
+      return
+    }
+
     formStore.sendData().then(adminStore.toggleAdminCreation)
   }
 
   return (
     <CardWrapper className="inline-flex">
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">Создание админа</div>
+        <div className="mb-4">
+          {formStore.id ? <div>Редактирование админа</div> : <div>Создание админа</div>}
+        </div>
         <div className="flex mb-4">
           <FormField label="Логин*">
             <TextInput
@@ -54,7 +62,11 @@ const AdminForm = ({ adminStore }) => {
           </FormField>
         </div>
         <div className="mt-4">
-          <FormButtons isLoading={formStore.isLoading} onCancel={adminStore.toggleAdminCreation} />
+          <FormButtons
+            isLoading={formStore.isLoading}
+            itemId={formStore.id}
+            onCancel={formStore.id ? formStore.cancelEdit : adminStore.toggleAdminCreation}
+          />
         </div>
       </form>
     </CardWrapper>

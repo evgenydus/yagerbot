@@ -5,8 +5,8 @@ import ActionIcons from '../ActionIcons'
 import CardWrapper from '../CardWrapper'
 
 const AdminCard = ({ admin }) => (
-  <CardWrapper className="flex group relative">
-    <ActionIcons item={admin} />
+  <CardWrapper className="flex group relative" isActive={admin.isActive}>
+    {!admin.isEditInProgress && <ActionIcons item={admin} />}
     <div className="overflow-hidden">
       <div className="mb-1 text-sm truncate">{admin.username}</div>
       <div className="text-xs text-gray-500">{`Создан: ${admin.createdAt}`}</div>
