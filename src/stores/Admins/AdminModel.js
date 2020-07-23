@@ -22,7 +22,9 @@ export default class AdminModel {
 
   @computed
   get isActive() {
-    return this.adminsStore.adminToEdit?.id === this.id
+    if (!this.adminsStore.adminToEdit) return false
+
+    return this.adminsStore.adminToEdit.id === this.id
   }
 
   edit = () => {
