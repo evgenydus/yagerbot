@@ -1,6 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import CreateGroup from './CreateGroup'
+
+import ManageGroup from './ManageGroup'
 import GroupList from './GroupList'
 import LoadIndicator from '../LoadIndicator'
 
@@ -23,7 +24,7 @@ const GroupsContent = ({ store }) => {
       <div className="mb-4">
         <GroupList groups={store.groupsStore.groups} />
       </div>
-      <CreateGroup groupsStore={store.groupsStore} />
+      <ManageGroup groupsStore={store.groupsStore} />
     </div>
   )
 }

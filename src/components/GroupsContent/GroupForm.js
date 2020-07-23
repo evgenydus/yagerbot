@@ -1,27 +1,19 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { observer } from 'mobx-react'
-import CreateGroupForm from '../../stores/Groups/CreateGroupForm'
+import GroupFormStore from '../../stores/Groups/GroupForm'
 
-import Button from '../UI/Button'
 import CardWrapper from '../CardWrapper'
 import ColorPicker from '../UI/ColorPicker'
 import FormField from '../UI/FormField'
 import Select from '../UI/Select'
 import TextInput from '../UI/TextInput'
+
 import FormButtons from './FormButtons'
 
-const CreateGroup = ({ groupsStore }) => {
-  const [isCreation, setCreation] = useState(false)
-
-  const toggleCreation = () => {
-    setCreation(!isCreation)
-  }
-
-  const [formStore] = useState(() => new CreateGroupForm(groupsStore, () => {}))
+const GroupForm = ({ group, groupsStore }) => {
+  const [formStore] = useState(() => new GroupFormStore(groupsStore, group))
 
   const nameInputRef = useRef(null)
-
-  if (!isCreation) return <Button onClick={toggleCreation}>Новая группа</Button>
 
   const handleNameChange = ({ target: { value } }) => formStore.setName(value)
 
@@ -37,9 +29,15 @@ const CreateGroup = ({ groupsStore }) => {
 
     if (formStore.isLoading) return
 
+    if (formStore.id) {
+      formStore.updateData()
+
+      return
+    }
+
     formStore
       .sendData()
-      .then(toggleCreation)
+      .then(groupsStore.toggleGroupCreation)
       .catch(() => {
         nameInputRef.current.focus()
       })
@@ -48,7 +46,9 @@ const CreateGroup = ({ groupsStore }) => {
   return (
     <CardWrapper className="flex max-w-sm">
       <form className="w-full" onSubmit={handleSubmit}>
-        <div className="mb-4">Создание группы</div>
+        <div className="mb-4">
+          {formStore.id ? <div>Редактирование группы</div> : <div>Создание группы</div>}
+        </div>
         <div className="flex mb-4">
           <FormField className="flex-grow" label="Название*">
             <TextInput
@@ -74,11 +74,15 @@ const CreateGroup = ({ groupsStore }) => {
           />
         </div>
         <div className="mt-4">
-          <FormButtons isLoading={formStore.isLoading} onCancel={toggleCreation} />
+          <FormButtons
+            groupId={formStore.id}
+            isLoading={formStore.isLoading}
+            onCancel={formStore.id ? formStore.cancelEdit : groupsStore.toggleGroupCreation}
+          />
         </div>
       </form>
     </CardWrapper>
   )
 }
 
-export default observer(CreateGroup)
+export default observer(GroupForm)
