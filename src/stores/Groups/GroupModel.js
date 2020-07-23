@@ -29,9 +29,7 @@ export default class GroupModel {
 
   @computed
   get isActive() {
-    if (!this.groupsStore.groupToEdit) return false
-
-    return this.groupsStore.groupToEdit.id === this.id
+    return this.groupsStore.groupToEdit?.id === this.id
   }
 
   edit = () => {
