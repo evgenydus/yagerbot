@@ -1,7 +1,7 @@
 import { computed, observable } from 'mobx'
 
 export default class GroupModel {
-  groups
+  groupsStore
 
   id
   @observable userIds = []

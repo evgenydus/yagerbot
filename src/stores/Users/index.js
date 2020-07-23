@@ -1,11 +1,12 @@
 import { action, observable } from 'mobx'
 import UserModel from './UserModel'
-import usersMock from '../../mocks/users'
 
 export default class Users {
   rootStore
 
+  @observable rawData = []
   @observable users = []
+  @observable isLoaded = false
 
   constructor(rootStore) {
     this.rootStore = rootStore
@@ -16,9 +17,25 @@ export default class Users {
   }
 
   @action
-  loadUsers() {
-    const users = usersMock.map(userData => new UserModel(userData, this))
+  setRawData(array) {
+    this.rawData.replace(array)
+    this.isLoaded = true
+  }
 
-    this.users.replace(users)
+  @action
+  setUsers(array) {
+    this.users.replace(array)
+  }
+
+  @action
+  loadUsers() {
+    if (this.isLoaded) return
+
+    this.api.getUserList().then(data => {
+      this.setRawData(data)
+      const users = data.map(userData => new UserModel(userData, this))
+
+      this.setUsers(users)
+    })
   }
 }
