@@ -10,6 +10,7 @@ export default class RootStore {
   usersStore
 
   @observable authToken = null
+  @observable isReady = false
 
   constructor({ api }) {
     this.api = api
@@ -20,8 +21,19 @@ export default class RootStore {
   }
 
   @action
+  setReady(isReady) {
+    this.isReady = isReady
+  }
+
+  @action
   setAuthToken(token) {
     Cookies.set('authToken', token)
     this.authToken = token
+  }
+
+  loadMainData() {
+    Promise.all([this.usersStore.load(), this.groupsStore.load()]).then(() => {
+      this.setReady(true)
+    })
   }
 }
