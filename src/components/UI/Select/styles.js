@@ -1,17 +1,25 @@
+const colors = {
+  alert: '#e53e3e',
+  gray300: '#e2e8f0',
+  gray400: '#cbd5e0',
+  gray500: '#a0aec0',
+  primary: '#38b2ac',
+}
+
 const selectStyles = {
   clearIndicator: base => ({
     ...base,
     '&:hover': {
-      color: '#e53e3e',
+      color: colors.alert,
     },
     padding: '5px',
   }),
   control: (base, { isFocused }) => ({
     ...base,
     '&:hover': {
-      borderColor: !isFocused && '#a0aec0',
+      borderColor: !isFocused && colors.gray500,
     },
-    borderColor: isFocused ? '#38b2ac' : '#cbd5e0',
+    borderColor: isFocused ? colors.primary : colors.gray400,
     boxShadow: 'none',
     cursor: 'pointer',
     minHeight: '2rem',
@@ -19,9 +27,9 @@ const selectStyles = {
   dropdownIndicator: (base, { isFocused }) => ({
     ...base,
     '&:hover': {
-      color: '#38b2ac',
+      color: colors.primary,
     },
-    color: isFocused ? '#38b2ac' : '#cbd5e0',
+    color: isFocused ? colors.primary : colors.gray400,
     padding: '5px',
   }),
   indicatorSeparator: () => ({
@@ -33,7 +41,7 @@ const selectStyles = {
   }),
   multiValue: base => ({
     ...base,
-    backgroundColor: '#e2e8f0',
+    backgroundColor: colors.gray300,
   }),
   multiValueLabel: base => ({
     ...base,
@@ -48,19 +56,19 @@ const selectStyles = {
   }),
   noOptionsMessage: base => ({
     ...base,
-    color: '#a0aec0',
+    color: colors.gray500,
   }),
   option: (base, { isFocused }) => ({
     ...base,
     '&:active': {
-      backgroundColor: '#cbd5e0',
+      backgroundColor: colors.gray400,
     },
-    backgroundColor: isFocused && '#e2e8f0',
+    backgroundColor: isFocused && colors.gray300,
     cursor: 'pointer',
   }),
   placeholder: base => ({
     ...base,
-    color: '#a0aec0',
+    color: colors.gray500,
   }),
 }
 
