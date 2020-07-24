@@ -4,11 +4,10 @@ import GroupFormStore from '../../stores/Groups/GroupForm'
 
 import CardWrapper from '../CardWrapper'
 import ColorPicker from '../UI/ColorPicker'
+import FormButtons from '../UI/FormButtons'
 import FormField from '../UI/FormField'
 import Select from '../UI/Select'
 import TextInput from '../UI/TextInput'
-
-import FormButtons from '../UI/FormButtons'
 
 const GroupForm = ({ group, groupsStore }) => {
   const [formStore] = useState(() => new GroupFormStore(groupsStore, group))
