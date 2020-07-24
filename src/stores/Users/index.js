@@ -7,6 +7,7 @@ export default class Users {
   @observable rawData = []
   @observable users = []
   @observable isLoaded = false
+  @observable userToEdit = null
 
   constructor(rootStore) {
     this.rootStore = rootStore
@@ -25,6 +26,20 @@ export default class Users {
   @action
   setUsers(array) {
     this.users.replace(array)
+  }
+
+  @action
+  setUserToEdit(user) {
+    this.userToEdit = user
+  }
+
+  @action
+  updateUser({ rawUser, user }) {
+    const rawUserIndex = this.rawData.findIndex(g => g.id === rawUser.id)
+    this.rawData.splice(rawUserIndex, 1, rawUser)
+
+    const userIndex = this.users.findIndex(g => g.id === user.id)
+    this.users.splice(userIndex, 1, user)
   }
 
   @action

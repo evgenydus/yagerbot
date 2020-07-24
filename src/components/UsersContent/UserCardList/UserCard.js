@@ -1,0 +1,29 @@
+import React from 'react'
+import { observer } from 'mobx-react'
+import { css } from '@emotion/core'
+import CardWrapper from '../../CardWrapper'
+import ActionIcons from '../../ActionIcons'
+
+const UserCard = ({ user }) => (
+  <CardWrapper className="group relative" isActive={user.isActive}>
+    {!user.isEditInProgress && <ActionIcons item={user} />}
+    <div className="text-sm">{user.label}</div>
+    <div className="text-gray-500 text-xs">@{user.username}</div>
+    <div className="flex items-center mt-1">
+      <div className="mr-2 text-xs text-gray-600">
+        {user.groups.length ? 'Группы:' : 'Без группы'}
+      </div>
+      {user.groups.map(group => (
+        <div
+          key={group.id}
+          className="flex-shrink-0 h-3 mr-2 rounded-full w-3"
+          css={css`
+            background-color: ${group.color};
+          `}
+        />
+      ))}
+    </div>
+  </CardWrapper>
+)
+
+export default observer(UserCard)

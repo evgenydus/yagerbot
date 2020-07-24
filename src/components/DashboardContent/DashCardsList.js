@@ -7,7 +7,7 @@ const DashCardsList = ({ store }) => {
     <div className="grid gap-4 grid-cols-4 text-center">
       <CardWrapper>
         <div>Всего пользователей:</div>
-        <div className="text-3xl">{store.totalUsersCount}</div>
+        <div className="text-3xl text-primary">{store.totalUsersCount}</div>
       </CardWrapper>
       <CardWrapper className="flex-col inline-flex">
         <div>Всего групп:</div>

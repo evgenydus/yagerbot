@@ -17,9 +17,11 @@ const ActionIcons = ({ item }) => (
     <div className={classnames(cIcon, 'link mr-1 text-xs')} onClick={item.edit}>
       <FontAwesomeIcon icon={['far', 'pencil-alt']} />
     </div>
-    <div className={classnames(cIcon, 'link-alert')} onClick={item.destroy}>
-      <FontAwesomeIcon icon={['far', 'times']} />
-    </div>
+    {item.destroy && (
+      <div className={classnames(cIcon, 'link-alert')} onClick={item.destroy}>
+        <FontAwesomeIcon icon={['far', 'times']} />
+      </div>
+    )}
   </div>
 )
 

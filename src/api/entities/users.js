@@ -7,8 +7,13 @@ const usersApi = {
   createUser(payload) {
     return makeRequest('post', url, payload)
   },
+
   getUserList() {
     return makeRequest('get', url)
+  },
+
+  updateUser(id, payload) {
+    return makeRequest('patch', `${url}${id}/`, payload)
   },
 }
 
