@@ -67,7 +67,7 @@ export default class Groups {
 
   @action
   load() {
-    this.api.getGroupList().then(groupsData => {
+    return this.api.getGroupList().then(groupsData => {
       this.setRawData(groupsData)
 
       const groups = groupsData.map(group => new GroupModel(group, this))

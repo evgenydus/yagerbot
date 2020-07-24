@@ -6,7 +6,7 @@ import GroupList from './GroupList'
 import LoadIndicator from '../LoadIndicator'
 
 const GroupsContent = ({ store }) => {
-  if (!store.groupsStore.isLoaded) {
+  if (!store.isReady) {
     return (
       <div className="inline-block p-4">
         <LoadIndicator />

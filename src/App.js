@@ -18,17 +18,17 @@ const App = () => {
 
   useEffect(() => {
     if (store.authToken) {
-      store.usersStore.loadUsers()
+      store.loadMainData()
     } else {
       navigate('/login')
     }
-  }, [store.authToken, store.usersStore])
+  }, [store, store.authToken])
 
   return (
     <Router>
       <Redirect from="/" to={routes.dashboard} />
       <Login path="/login" store={store} />
-      <Dashboard path={routes.dashboard} usersStore={store.usersStore} />
+      <Dashboard path={routes.dashboard} store={store} />
       <People path={routes.people} store={store} />
       <Groups path={routes.groups} store={store} />
       <Messages path={routes.messages} store={store} />

@@ -28,10 +28,8 @@ export default class Users {
   }
 
   @action
-  loadUsers() {
-    if (this.isLoaded) return
-
-    this.api.getUserList().then(data => {
+  load() {
+    return this.api.getUserList().then(data => {
       this.setRawData(data)
       const users = data.map(userData => new UserModel(userData, this))
 
