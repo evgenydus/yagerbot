@@ -46,6 +46,10 @@ const selectStyles = {
       cursor: 'pointer',
     },
   }),
+  noOptionsMessage: base => ({
+    ...base,
+    color: '#a0aec0',
+  }),
   option: (base, { isFocused }) => ({
     ...base,
     '&:active': {
