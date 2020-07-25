@@ -1,5 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom' // eslint-disable-line import/no-unresolved
+import { hot } from 'react-hot-loader'
 import { observerBatching } from 'mobx-react'
 
 import App from './App'
@@ -9,6 +10,8 @@ import './styles/index.css'
 
 observerBatching()
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const HotApp = hot(module)(App)
+
+ReactDOM.render(<HotApp />, document.getElementById('root'))
 
 module.hot.accept()

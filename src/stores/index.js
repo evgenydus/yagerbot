@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx'
+import { action, computed, observable } from 'mobx'
 import Cookies from 'js-cookie'
 import Users from './Users'
 import Admins from './Admins'
@@ -18,6 +18,16 @@ export default class RootStore {
     this.usersStore = new Users(this)
     this.adminStore = new Admins(this)
     this.authToken = Cookies.get('authToken')
+  }
+
+  @computed
+  get totalUsersCount() {
+    return this.usersStore.users.length
+  }
+
+  @computed
+  get totalGroupsCount() {
+    return this.groupsStore.groups.length
   }
 
   @action

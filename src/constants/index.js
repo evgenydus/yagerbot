@@ -4,7 +4,6 @@ export const pages = {
   groups: 'groups',
   messages: 'messages',
   people: 'people',
-  reports: 'reports',
 }
 
 export const pageNames = {
@@ -13,7 +12,6 @@ export const pageNames = {
   [pages.groups]: 'Группы',
   [pages.messages]: 'Сообщения',
   [pages.people]: 'Люди',
-  [pages.reports]: 'Отчеты',
 }
 
 export const pageIcons = {
@@ -30,7 +28,6 @@ export const navigationItems = [
   pages.messages,
   pages.people,
   pages.groups,
-  pages.reports,
   pages.admin,
 ]
 
