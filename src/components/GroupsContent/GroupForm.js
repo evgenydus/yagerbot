@@ -19,7 +19,7 @@ const GroupForm = ({ group, groupsStore }) => {
   const handleColorChange = color => formStore.setColor(color)
 
   const handleSelectChange = optionsArray => {
-    const userIds = optionsArray.map(option => option.value)
+    const userIds = optionsArray ? optionsArray.map(option => option.value) : []
     formStore.setUserIds(userIds)
   }
 
@@ -70,6 +70,7 @@ const GroupForm = ({ group, groupsStore }) => {
             onChange={handleSelectChange}
             options={formStore.usersAsOptions}
             placeholder="Выбери пользователей..."
+            value={formStore.selectedUsers}
           />
         </div>
         <div className="mt-4">

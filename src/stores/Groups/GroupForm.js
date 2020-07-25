@@ -15,7 +15,7 @@ export default class GroupForm {
       this.id = group.id
       this.name = group.name
       this.color = group.color
-      this.userIds = group.userIds
+      this.userIds = group.userIds.slice()
     }
   }
 
@@ -33,6 +33,11 @@ export default class GroupForm {
   @computed
   get isValid() {
     return this.name.trim() && this.color
+  }
+
+  @computed
+  get selectedUsers() {
+    return this.userIds.map(id => this.usersAsOptions.find(option => option.value === id))
   }
 
   @computed
