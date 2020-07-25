@@ -10,3 +10,5 @@ import './styles/index.css'
 observerBatching()
 
 ReactDOM.render(<App />, document.getElementById('root'))
+
+module.hot.accept()

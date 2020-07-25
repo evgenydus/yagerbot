@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Router, navigate, Redirect } from '@reach/router'
+import { hot } from 'react-hot-loader'
 import { observer } from 'mobx-react'
 import { routes } from './constants'
 import api from './api'
@@ -26,7 +27,7 @@ const App = () => {
 
   return (
     <Router>
-      <Redirect from="/" to={routes.dashboard} />
+      <Redirect from="/" noThrow to={routes.dashboard} />
       <Login path="/login" store={store} />
       <Dashboard path={routes.dashboard} store={store} />
       <People path={routes.people} store={store} />
@@ -38,4 +39,4 @@ const App = () => {
   )
 }
 
-export default observer(App)
+export default hot(module)(observer(App))
