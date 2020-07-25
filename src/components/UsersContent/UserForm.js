@@ -32,7 +32,7 @@ const UserForm = ({ store }) => {
             {formStore.user.fullName}
           </FormField>
         </div>
-        <FormField className="mb-4" label="Имя в системе">
+        <FormField className="mb-4" label="Имя в системе*">
           <TextInput
             autoFocus
             className="w-full"
