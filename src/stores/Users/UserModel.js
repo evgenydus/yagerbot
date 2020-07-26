@@ -25,6 +25,16 @@ export default class UserModel {
   }
 
   @computed
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`
+  }
+
+  @computed
+  get groups() {
+    return this.usersStore.rootStore.groupsStore.groups.filter(g => this.groupIds.includes(g.id))
+  }
+
+  @computed
   get isActive() {
     return this.usersStore.userToEdit?.id === this.id
   }
@@ -34,18 +44,9 @@ export default class UserModel {
     return Boolean(this.usersStore.userToEdit)
   }
 
-  @computed
-  get groups() {
-    return this.usersStore.rootStore.groupsStore.groups.filter(g => this.groupIds.includes(g.id))
-  }
-
-  @computed
-  get fullName() {
-    return `${this.firstName} ${this.lastName}`
-  }
-
-  edit = () => {
-    this.usersStore.setUserToEdit(this)
+  @action
+  setGroupId(value) {
+    this.groupId = value
   }
 
   @action
@@ -53,8 +54,7 @@ export default class UserModel {
     this.label = value
   }
 
-  @action
-  setGroupId(value) {
-    this.groupId = value
+  edit = () => {
+    this.usersStore.setUserToEdit(this)
   }
 }

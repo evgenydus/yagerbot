@@ -16,21 +16,21 @@ export default class AdminModel {
   }
 
   @computed
-  get isEditInProgress() {
-    return Boolean(this.adminsStore.adminToEdit)
-  }
-
-  @computed
   get isActive() {
     return this.adminsStore.adminToEdit?.id === this.id
   }
 
-  edit = () => {
-    this.adminsStore.setAdminToEdit(this)
+  @computed
+  get isEditInProgress() {
+    return Boolean(this.adminsStore.adminToEdit)
   }
 
   destroy = () => {
     this.adminsStore.setAdminToEdit(null)
     this.adminsStore.removeAdmin(this.id)
+  }
+
+  edit = () => {
+    this.adminsStore.setAdminToEdit(this)
   }
 }

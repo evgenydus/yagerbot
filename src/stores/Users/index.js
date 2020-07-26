@@ -18,6 +18,16 @@ export default class Users {
   }
 
   @action
+  load() {
+    return this.api.getUserList().then(data => {
+      this.setRawData(data)
+      const users = data.map(userData => new UserModel(userData, this))
+
+      this.setUsers(users)
+    })
+  }
+
+  @action
   setRawData(array) {
     this.rawData.replace(array)
     this.isLoaded = true
@@ -40,15 +50,5 @@ export default class Users {
 
     const userIndex = this.users.findIndex(g => g.id === user.id)
     this.users.splice(userIndex, 1, user)
-  }
-
-  @action
-  load() {
-    return this.api.getUserList().then(data => {
-      this.setRawData(data)
-      const users = data.map(userData => new UserModel(userData, this))
-
-      this.setUsers(users)
-    })
   }
 }

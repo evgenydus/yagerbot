@@ -18,8 +18,8 @@ export default class GroupModel {
   }
 
   @computed
-  get usersCount() {
-    return this.userIds.length
+  get isActive() {
+    return this.groupsStore.groupToEdit?.id === this.id
   }
 
   @computed
@@ -28,8 +28,8 @@ export default class GroupModel {
   }
 
   @computed
-  get isActive() {
-    return this.groupsStore.groupToEdit?.id === this.id
+  get usersCount() {
+    return this.userIds.length
   }
 
   edit = () => {

@@ -35,9 +35,8 @@ export default class LoginForm {
   }
 
   @action
-  setUsername(value) {
-    this.username = value
-    this.setErrorMessage('')
+  setErrorMessage(value) {
+    this.errorMessage = value
   }
 
   @action
@@ -47,8 +46,9 @@ export default class LoginForm {
   }
 
   @action
-  setErrorMessage(value) {
-    this.errorMessage = value
+  setUsername(value) {
+    this.username = value
+    this.setErrorMessage('')
   }
 
   sendData() {

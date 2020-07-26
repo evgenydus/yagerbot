@@ -43,13 +43,11 @@ export default class AdminForm {
   }
 
   @action
-  setUsername(value) {
-    this.username = value
-  }
-
-  @action
-  setPassword(value) {
-    this.password = value
+  resetForm() {
+    this.username = ''
+    this.password = ''
+    this.firstName = ''
+    this.lastName = ''
   }
 
   @action
@@ -63,15 +61,13 @@ export default class AdminForm {
   }
 
   @action
-  resetForm() {
-    this.username = ''
-    this.password = ''
-    this.firstName = ''
-    this.lastName = ''
+  setPassword(value) {
+    this.password = value
   }
 
-  cancelEdit = () => {
-    this.adminsStore.adminToEdit = null
+  @action
+  setUsername(value) {
+    this.username = value
   }
 
   @action
@@ -90,6 +86,10 @@ export default class AdminForm {
       .finally(() => {
         this.isLoading = false
       })
+  }
+
+  cancelEdit = () => {
+    this.adminsStore.adminToEdit = null
   }
 
   sendData() {

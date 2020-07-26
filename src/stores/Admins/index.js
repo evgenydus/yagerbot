@@ -20,14 +20,19 @@ export default class Admins {
   }
 
   @action
-  toggleAdminCreation = () => {
-    this.isAdminCreation = !this.isAdminCreation
+  addAdmin(adminData) {
+    this.admins.push(new AdminModel(adminData, this))
+    this.rawData.push(adminData)
   }
 
   @action
-  setRawData(array) {
-    this.rawData.replace(array)
-    this.isLoaded = true
+  removeAdmin(id) {
+    const newAdmins = this.admins.filter(admin => admin.id !== id)
+    const newRawData = this.rawData.filter(admin => admin.id !== id)
+    this.admins.replace(newAdmins)
+    this.rawData.replace(newRawData)
+
+    this.api.deleteAdmin(id)
   }
 
   @action
@@ -42,9 +47,14 @@ export default class Admins {
   }
 
   @action
-  addAdmin(adminData) {
-    this.admins.push(new AdminModel(adminData, this))
-    this.rawData.push(adminData)
+  setRawData(array) {
+    this.rawData.replace(array)
+    this.isLoaded = true
+  }
+
+  @action
+  toggleAdminCreation = () => {
+    this.isAdminCreation = !this.isAdminCreation
   }
 
   @action
@@ -54,16 +64,6 @@ export default class Admins {
 
     const adminIndex = this.admins.findIndex(a => a.id === admin.id)
     this.admins.splice(adminIndex, 1, admin)
-  }
-
-  @action
-  removeAdmin(id) {
-    const newAdmins = this.admins.filter(admin => admin.id !== id)
-    const newRawData = this.rawData.filter(admin => admin.id !== id)
-    this.admins.replace(newAdmins)
-    this.rawData.replace(newRawData)
-
-    this.api.deleteAdmin(id)
   }
 
   load() {

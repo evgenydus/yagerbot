@@ -26,11 +26,6 @@ export default class UserForm {
     return this.usersStore.rootStore.groupsStore.groups.map(g => ({ label: g.name, value: g.id }))
   }
 
-  @action
-  setLabel(value) {
-    this.label = value
-  }
-
   @computed
   get selectedGroups() {
     return this.groupIds.map(id => this.groupsAsOptions.find(option => option.value === id))
@@ -39,6 +34,11 @@ export default class UserForm {
   @action
   setGroupIds(array) {
     this.groupIds.replace(array)
+  }
+
+  @action
+  setLabel(value) {
+    this.label = value
   }
 
   @action

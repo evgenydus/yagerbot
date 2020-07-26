@@ -19,14 +19,30 @@ export default class Groups {
   }
 
   @action
-  toggleGroupCreation = () => {
-    this.isGroupCreation = !this.isGroupCreation
+  addGroup(groupData) {
+    this.rawData.push(groupData)
+    this.groups.push(new GroupModel(groupData, this))
   }
 
   @action
-  setRawData(array) {
-    this.rawData.replace(array)
-    this.isLoaded = true
+  load() {
+    return this.api.getGroupList().then(groupsData => {
+      this.setRawData(groupsData)
+
+      const groups = groupsData.map(group => new GroupModel(group, this))
+
+      this.setGroups(groups)
+    })
+  }
+
+  @action
+  removeGroup(id) {
+    const newGroups = this.groups.filter(group => group.id !== id)
+    const newRawData = this.rawData.filter(group => group.id !== id)
+    this.groups.replace(newGroups)
+    this.rawData.replace(newRawData)
+
+    this.api.deleteGroup(id)
   }
 
   @action
@@ -41,9 +57,14 @@ export default class Groups {
   }
 
   @action
-  addGroup(groupData) {
-    this.rawData.push(groupData)
-    this.groups.push(new GroupModel(groupData, this))
+  setRawData(array) {
+    this.rawData.replace(array)
+    this.isLoaded = true
+  }
+
+  @action
+  toggleGroupCreation = () => {
+    this.isGroupCreation = !this.isGroupCreation
   }
 
   @action
@@ -53,26 +74,5 @@ export default class Groups {
 
     const groupIndex = this.groups.findIndex(g => g.id === group.id)
     this.groups.splice(groupIndex, 1, group)
-  }
-
-  @action
-  removeGroup(id) {
-    const newGroups = this.groups.filter(group => group.id !== id)
-    const newRawData = this.rawData.filter(group => group.id !== id)
-    this.groups.replace(newGroups)
-    this.rawData.replace(newRawData)
-
-    this.api.deleteGroup(id)
-  }
-
-  @action
-  load() {
-    return this.api.getGroupList().then(groupsData => {
-      this.setRawData(groupsData)
-
-      const groups = groupsData.map(group => new GroupModel(group, this))
-
-      this.setGroups(groups)
-    })
   }
 }
