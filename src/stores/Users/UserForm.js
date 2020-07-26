@@ -31,6 +31,16 @@ export default class UserForm {
     this.label = value
   }
 
+  @computed
+  get selectedGroups() {
+    return this.groupIds.map(id => this.groupsAsOptions.find(option => option.value === id))
+  }
+
+  @action
+  setGroupIds(array) {
+    this.groupIds.replace(array)
+  }
+
   @action
   updateData() {
     if (this.isLoading) return Promise.resolve()

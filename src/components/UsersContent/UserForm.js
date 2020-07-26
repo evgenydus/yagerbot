@@ -20,6 +20,11 @@ const UserForm = ({ store }) => {
     formStore.setLabel(value)
   }
 
+  const handleSelectChange = optionsArray => {
+    const groupIds = optionsArray ? optionsArray.map(option => option.value) : []
+    formStore.setGroupIds(groupIds)
+  }
+
   return (
     <CardWrapper className="flex max-w-sm">
       <form className="w-full" onSubmit={handleSubmit}>
@@ -40,15 +45,15 @@ const UserForm = ({ store }) => {
             required
             value={formStore.label}
           />
-
         </FormField>
         <FormField className="mb-4" label="Группы">
           <Select
             closeMenuOnSelect={false}
             isMulti
-            // onChange={handleSelectChange}
+            onChange={handleSelectChange}
             options={formStore.groupsAsOptions}
             placeholder="Выбери группы..."
+            value={formStore.selectedGroups}
           />
         </FormField>
         <FormButtons
