@@ -7,6 +7,7 @@ export default class Users {
   @observable rawData = []
   @observable users = []
   @observable isLoaded = false
+  @observable userToEdit = null
 
   constructor(rootStore) {
     this.rootStore = rootStore
@@ -14,6 +15,16 @@ export default class Users {
 
   get api() {
     return this.rootStore.api.users
+  }
+
+  @action
+  load() {
+    return this.api.getUserList().then(data => {
+      this.setRawData(data)
+      const users = data.map(userData => new UserModel(userData, this))
+
+      this.setUsers(users)
+    })
   }
 
   @action
@@ -28,12 +39,16 @@ export default class Users {
   }
 
   @action
-  load() {
-    return this.api.getUserList().then(data => {
-      this.setRawData(data)
-      const users = data.map(userData => new UserModel(userData, this))
+  setUserToEdit(user) {
+    this.userToEdit = user
+  }
 
-      this.setUsers(users)
-    })
+  @action
+  updateUser({ rawUser, user }) {
+    const rawUserIndex = this.rawData.findIndex(g => g.id === rawUser.id)
+    this.rawData.splice(rawUserIndex, 1, rawUser)
+
+    const userIndex = this.users.findIndex(g => g.id === user.id)
+    this.users.splice(userIndex, 1, user)
   }
 }

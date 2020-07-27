@@ -63,7 +63,7 @@ const GroupForm = ({ group, groupsStore }) => {
             <ColorPicker onChange={handleColorChange} value={formStore.color} />
           </FormField>
         </div>
-        <div className="text-sm">
+        <FormField className="mb-4" label="Пользователи">
           <Select
             closeMenuOnSelect={false}
             isMulti
@@ -72,14 +72,12 @@ const GroupForm = ({ group, groupsStore }) => {
             placeholder="Выбери пользователей..."
             value={formStore.selectedUsers}
           />
-        </div>
-        <div className="mt-4">
-          <FormButtons
-            isLoading={formStore.isLoading}
-            itemId={formStore.id}
-            onCancel={formStore.id ? formStore.cancelEdit : groupsStore.toggleGroupCreation}
-          />
-        </div>
+        </FormField>
+        <FormButtons
+          isLoading={formStore.isLoading}
+          itemId={formStore.id}
+          onCancel={formStore.id ? formStore.cancelEdit : groupsStore.toggleGroupCreation}
+        />
       </form>
     </CardWrapper>
   )

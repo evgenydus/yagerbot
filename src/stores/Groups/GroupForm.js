@@ -49,8 +49,10 @@ export default class GroupForm {
   }
 
   @action
-  setUserIds(array) {
-    this.userIds.replace(array)
+  resetForm() {
+    this.name = ''
+    this.color = ''
+    this.userIds = []
   }
 
   @action
@@ -64,14 +66,8 @@ export default class GroupForm {
   }
 
   @action
-  resetForm() {
-    this.name = ''
-    this.color = ''
-    this.userIds = []
-  }
-
-  cancelEdit = () => {
-    this.groupsStore.setGroupToEdit(null)
+  setUserIds(array) {
+    this.userIds.replace(array)
   }
 
   @action
@@ -90,6 +86,10 @@ export default class GroupForm {
       .finally(() => {
         this.isLoading = false
       })
+  }
+
+  cancelEdit = () => {
+    this.groupsStore.setGroupToEdit(null)
   }
 
   sendData() {

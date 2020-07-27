@@ -21,24 +21,24 @@ export default class RootStore {
   }
 
   @computed
-  get totalUsersCount() {
-    return this.usersStore.users.length
-  }
-
-  @computed
   get totalGroupsCount() {
     return this.groupsStore.groups.length
   }
 
-  @action
-  setReady(isReady) {
-    this.isReady = isReady
+  @computed
+  get totalUsersCount() {
+    return this.usersStore.users.length
   }
 
   @action
   setAuthToken(token) {
     Cookies.set('authToken', token)
     this.authToken = token
+  }
+
+  @action
+  setReady(isReady) {
+    this.isReady = isReady
   }
 
   loadMainData() {

@@ -8,7 +8,7 @@ export default class UserModel {
   firstName
   lastName
   @observable label
-  @observable groupId
+  @observable groupIds
 
   constructor(
     { first_name, group, id, bot_panel_username, last_name, telegram_username },
@@ -19,7 +19,7 @@ export default class UserModel {
     this.firstName = first_name
     this.lastName = last_name
     this.label = bot_panel_username
-    this.groupId = group
+    this.groupIds = [group]
 
     this.usersStore = usersStore
   }
@@ -29,13 +29,32 @@ export default class UserModel {
     return `${this.firstName} ${this.lastName}`
   }
 
-  @action
-  setLabel(value) {
-    this.label = value
+  @computed
+  get groups() {
+    return this.usersStore.rootStore.groupsStore.groups.filter(g => this.groupIds.includes(g.id))
+  }
+
+  @computed
+  get isActive() {
+    return this.usersStore.userToEdit?.id === this.id
+  }
+
+  @computed
+  get isEditInProgress() {
+    return Boolean(this.usersStore.userToEdit)
   }
 
   @action
   setGroupId(value) {
     this.groupId = value
+  }
+
+  @action
+  setLabel(value) {
+    this.label = value
+  }
+
+  edit = () => {
+    this.usersStore.setUserToEdit(this)
   }
 }
