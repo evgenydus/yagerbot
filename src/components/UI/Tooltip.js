@@ -1,13 +1,17 @@
 import React from 'react'
 import Tippy from '@tippyjs/react'
+import 'tippy.js/animations/shift-away-extreme.css'
 import 'tippy.js/dist/tippy.css'
 import 'tippy.js/themes/translucent.css'
-import classnames from 'classnames'
 
-const Tooltip = ({ content, children, className }) => (
-  <Tippy content={content} theme="translucent">
-    <div className={classnames(className, 'inline-block')}>{children}</div>
-  </Tippy>
-)
+const Tooltip = ({ content, children, ...props }) => {
+  if (!content) return children
+
+  return (
+    <Tippy animation="shift-away-extreme" content={content} theme="translucent" {...props}>
+      <div className="inline-block">{children}</div>
+    </Tippy>
+  )
+}
 
 export default Tooltip

@@ -14,8 +14,10 @@ const ColorPicker = ({ onChange, value }) => {
   return (
     <div>
       <Popover
+        arrow={false}
+        className="bg-transparent"
         content={<GithubPicker onChange={handleChange} triangle="hide" width="187px" />}
-        isTransparent
+        offset={[0, 5]}
       >
         <div
           className={classnames('cursor-pointer h-8 input-text w-8 hover:border-primary')}
