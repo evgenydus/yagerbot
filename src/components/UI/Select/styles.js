@@ -45,6 +45,7 @@ const selectStyles = {
   }),
   multiValueLabel: base => ({
     ...base,
+    fontSize: '0.875rem',
     padding: '2px',
   }),
   multiValueRemove: base => ({
@@ -65,6 +66,7 @@ const selectStyles = {
     },
     backgroundColor: isFocused && colors.gray300,
     cursor: 'pointer',
+    fontSize: '0.875rem',
   }),
   placeholder: base => ({
     ...base,
