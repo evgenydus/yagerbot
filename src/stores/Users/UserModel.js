@@ -11,14 +11,14 @@ export default class UserModel {
   @observable groupIds
 
   constructor(
-    { first_name, group, id, bot_panel_username, last_name, telegram_username },
+    { firstName, group, id, botPanelUsername, lastName, telegramUsername },
     usersStore,
   ) {
     this.id = id
-    this.username = telegram_username
-    this.firstName = first_name
-    this.lastName = last_name
-    this.label = bot_panel_username
+    this.username = telegramUsername
+    this.firstName = firstName
+    this.lastName = lastName
+    this.label = botPanelUsername
     this.groupIds = [group]
 
     this.usersStore = usersStore
