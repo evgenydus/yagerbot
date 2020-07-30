@@ -52,7 +52,7 @@ export default class UserForm {
     this.isLoading = true
 
     return this.api
-      .updateUser(this.user.id, { bot_panel_username: this.label })
+      .updateUser(this.user.id, { botPanelUsername: this.label, group: this.groupIds })
       .then(userData => {
         this.usersStore.updateUser({
           rawUser: userData,
