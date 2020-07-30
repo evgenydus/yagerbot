@@ -30,7 +30,6 @@
   "rules": {
     "arrow-body-style": ["error", "as-needed"],
     "class-methods-use-this": "off",
-    "camelcase": "off",
     "comma-dangle": ["error", "only-multiline"],
     "jsx-a11y/aria-role": [ "error", {
       "ignoreNonDOM": true
