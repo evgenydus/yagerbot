@@ -65,6 +65,7 @@ export default class UserForm {
           rawUser: userData,
           user: new UserModel(userData, this.usersStore),
         })
+        this.usersStore.rootStore.groupsStore.load()
         this.cancelEdit()
       })
       .finally(() => {
