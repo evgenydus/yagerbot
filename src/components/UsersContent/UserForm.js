@@ -1,11 +1,25 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react'
+import { css } from '@emotion/core'
+
 import UserFormStore from '../../stores/Users/UserForm'
 import CardWrapper from '../CardWrapper'
 import FormField from '../UI/FormField'
 import TextInput from '../UI/TextInput'
 import Select from '../UI/Select'
 import FormButtons from '../UI/FormButtons'
+
+const GroupOption = ({ color, label }) => (
+  <div className="flex items-center">
+    <div
+      className="h-3 mr-2 rounded-full w-3"
+      css={css`
+        background-color: ${color};
+      `}
+    />
+    <div>{label}</div>
+  </div>
+)
 
 const UserForm = ({ store }) => {
   const [formStore] = useState(() => new UserFormStore(store.usersStore))
@@ -49,6 +63,7 @@ const UserForm = ({ store }) => {
         <FormField className="mb-4" label="Группы">
           <Select
             closeMenuOnSelect={false}
+            formatOptionLabel={GroupOption}
             isMulti
             onChange={handleSelectChange}
             options={formStore.groupsAsOptions}

@@ -23,7 +23,11 @@ export default class UserForm {
 
   @computed
   get groupsAsOptions() {
-    return this.usersStore.rootStore.groupsStore.groups.map(g => ({ label: g.name, value: g.id }))
+    return this.usersStore.rootStore.groupsStore.groups.map(g => ({
+      color: g.color,
+      label: g.name,
+      value: g.id,
+    }))
   }
 
   @computed
