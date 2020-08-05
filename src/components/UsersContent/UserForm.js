@@ -9,7 +9,7 @@ import TextInput from '../UI/TextInput'
 import Select from '../UI/Select'
 import FormButtons from '../UI/FormButtons'
 
-const groupOption = ({ label, color }) => (
+const GroupOption = ({ color, label }) => (
   <div className="flex items-center">
     <div
       className="h-3 mr-2 rounded-full w-3"
@@ -63,7 +63,7 @@ const UserForm = ({ store }) => {
         <FormField className="mb-4" label="Группы">
           <Select
             closeMenuOnSelect={false}
-            formatOptionLabel={groupOption}
+            formatOptionLabel={GroupOption}
             isMulti
             onChange={handleSelectChange}
             options={formStore.groupsAsOptions}
