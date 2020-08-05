@@ -1,8 +1,10 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { css } from '@emotion/core'
-import CardWrapper from '../../CardWrapper'
+
 import ActionIcons from '../../ActionIcons'
+import CardWrapper from '../../CardWrapper'
+import Tooltip from '../../UI/Tooltip'
 
 const UserCard = ({ user }) => (
   <CardWrapper className="group relative" isActive={user.isActive}>
@@ -14,13 +16,14 @@ const UserCard = ({ user }) => (
         {user.groups.length ? 'Группы:' : 'Без группы'}
       </div>
       {user.groups.map(group => (
-        <div
-          key={group.id}
-          className="flex-shrink-0 h-3 mr-2 rounded-full w-3"
-          css={css`
-            background-color: ${group.color};
-          `}
-        />
+        <Tooltip key={group.id} content={group.name}>
+          <div
+            className="flex-shrink-0 h-3 mr-2 rounded-full w-3"
+            css={css`
+              background-color: ${group.color};
+            `}
+          />
+        </Tooltip>
       ))}
     </div>
   </CardWrapper>
