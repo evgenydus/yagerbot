@@ -19,7 +19,7 @@ export default class UserModel {
     this.firstName = firstName
     this.lastName = lastName
     this.label = botPanelUsername
-    this.groupIds = [group]
+    this.groupIds = group
 
     this.usersStore = usersStore
   }
