@@ -8,11 +8,11 @@ export default class GroupModel {
   @observable name = ''
   @observable color = ''
 
-  constructor({ color, id, members, name }, groupsStore) {
+  constructor({ color, id, memberIds, name }, groupsStore) {
     this.groupsStore = groupsStore
 
     this.id = id
-    this.userIds = members.map(member => member.id)
+    this.userIds = memberIds
     this.name = name
     this.color = color
   }

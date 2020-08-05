@@ -26,6 +26,7 @@ export default class GroupForm {
   get requestPayload() {
     return {
       color: this.color,
+      memberIds: this.userIds,
       name: this.name,
     }
   }
@@ -71,10 +72,12 @@ export default class GroupForm {
   }
 
   @action
-  updateData = () => {
+  updateData() {
+    if (this.isLoading) return Promise.resolve()
+
     this.isLoading = true
 
-    this.api
+    return this.api
       .updateGroup(this.id, this.requestPayload)
       .then(groupData => {
         this.groupsStore.updateGroup({

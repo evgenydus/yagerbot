@@ -11,7 +11,7 @@ export default class UserModel {
   @observable groupIds
 
   constructor(
-    { firstName, group, id, botPanelUsername, lastName, telegramUsername },
+    { firstName, groupIds, id, botPanelUsername, lastName, telegramUsername },
     usersStore,
   ) {
     this.id = id
@@ -19,7 +19,7 @@ export default class UserModel {
     this.firstName = firstName
     this.lastName = lastName
     this.label = botPanelUsername
-    this.groupIds = group
+    this.groupIds = groupIds
 
     this.usersStore = usersStore
   }
@@ -46,7 +46,7 @@ export default class UserModel {
 
   @action
   setGroupId(value) {
-    this.groupId = value
+    this.groupIds = value
   }
 
   @action
