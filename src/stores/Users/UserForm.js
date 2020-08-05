@@ -21,12 +21,19 @@ export default class UserForm {
     return this.usersStore.api
   }
 
+  get requestPayload() {
+    return {
+      botPanelUsername: this.label,
+      groupIds: this.groupIds,
+    }
+  }
+
   @computed
   get groupsAsOptions() {
-    return this.usersStore.rootStore.groupsStore.groups.map(g => ({
-      color: g.color,
-      label: g.name,
-      value: g.id,
+    return this.usersStore.rootStore.groupsStore.groups.map(group => ({
+      color: group.color,
+      label: group.name,
+      value: group.id,
     }))
   }
 
@@ -52,7 +59,7 @@ export default class UserForm {
     this.isLoading = true
 
     return this.api
-      .updateUser(this.user.id, { botPanelUsername: this.label, group: this.groupIds })
+      .updateUser(this.user.id, this.requestPayload)
       .then(userData => {
         this.usersStore.updateUser({
           rawUser: userData,
