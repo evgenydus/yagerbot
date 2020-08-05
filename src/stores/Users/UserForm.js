@@ -12,7 +12,7 @@ export default class UserForm {
     const user = usersStore.userToEdit || usersStore.users[0]
     this.user = user
     this.label = user.label
-    this.groupIds = user.groupIds
+    this.groupIds = user.groupIds.slice()
 
     this.usersStore = usersStore
   }
