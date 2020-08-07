@@ -8,7 +8,7 @@ const FormButtons = ({ itemId, isLoading, onCancel }) => {
   if (isLoading) return <LoadIndicator />
 
   return (
-    <div className="flex justify-end">
+    <div className="flex justify-end xs:justify-center">
       <Button mode="gray" onClick={onCancel}>
         Отмена
       </Button>

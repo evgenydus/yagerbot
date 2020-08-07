@@ -10,7 +10,7 @@ const ManageGroup = ({ groupsStore }) => {
 
   return (
     <>
-      <Button onClick={openModal}>Новая группа</Button>
+      <Button className="xs:mx-auto" onClick={openModal}>Новая группа</Button>
       <Modal isOpen={isOpen} onClose={closeModal}>
         <GroupForm group={groupsStore.groupToEdit} groupsStore={groupsStore} />
       </Modal>

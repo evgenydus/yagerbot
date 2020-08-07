@@ -8,7 +8,7 @@ const Sidebar = ({ className }) => (
   <div
     className={classnames(
       className,
-      'border-l border-r flex-shrink-0 h-full sm:absolute sm:bg-white sm:duration-300 sm:ease sm:transform sm:z-50 w-48',
+      'border-l border-r flex-shrink-0 w-48 xs:absolute xs:bg-white xs:duration-300 xs:ease xs:h-full xs:transform xs:z-50',
     )}
   >
     <Logo />

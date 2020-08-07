@@ -8,7 +8,7 @@ import ManageAdmin from './ManageAdmin'
 const AdminContent = ({ store }) => {
   if (!store.adminStore.isLoaded) {
     return (
-      <div className="inline-block p-4">
+      <div className="inline-block p-4 xs:block xs:mx-auto">
         <LoadIndicator />
       </div>
     )

@@ -9,7 +9,11 @@ const ManageAdmin = ({ adminStore }) => {
     return <AdminForm key="edit-admin" admin={adminStore.adminToEdit} adminStore={adminStore} />
 
   if (!adminStore.isAdminCreation)
-    return <Button onClick={adminStore.toggleAdminCreation}>Новый админ</Button>
+    return (
+      <Button className="xs:mx-auto" onClick={adminStore.toggleAdminCreation}>
+        Новый админ
+      </Button>
+    )
 
   return <AdminForm key="create-admin" adminStore={adminStore} />
 }

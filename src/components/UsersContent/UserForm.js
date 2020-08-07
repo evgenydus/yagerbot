@@ -40,7 +40,7 @@ const UserForm = ({ store }) => {
   }
 
   return (
-    <CardWrapper className="flex max-w-sm">
+    <CardWrapper className="flex max-w-sm xs:mx-auto">
       <form className="w-full" onSubmit={handleSubmit}>
         <div className="mb-4">Редактирование пользователя</div>
         <div className="flex mb-4 text-sm">

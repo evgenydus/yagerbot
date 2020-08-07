@@ -30,22 +30,24 @@ const AdminForm = ({ admin, adminStore }) => {
   }
 
   return (
-    <CardWrapper className="inline-flex">
-      <form onSubmit={handleSubmit}>
+    <CardWrapper className="md:inline-flex xs:max-w-sm xs:mx-auto">
+      <form className="w-full" onSubmit={handleSubmit}>
         <div className="mb-4">
           {formStore.id ? <div>Редактирование админа</div> : <div>Создание админа</div>}
         </div>
-        <div className="flex mb-4">
+        <div className="flex mb-4 xs:flex-col">
           <FormField label="Логин*">
             <TextInput
               autoFocus
+              className="xs:w-full"
               onChange={handleUsernameChange}
               required
               value={formStore.username}
             />
           </FormField>
-          <FormField className="ml-4" label="Пароль*">
+          <FormField className="md:ml-4" label="Пароль*">
             <TextInput
+              className="xs:w-full"
               onChange={handlePasswordChange}
               required
               type="password"
@@ -53,12 +55,20 @@ const AdminForm = ({ admin, adminStore }) => {
             />
           </FormField>
         </div>
-        <div className="flex">
+        <div className="flex xs:flex-col">
           <FormField label="Имя">
-            <TextInput onChange={handleFirstNameChange} value={formStore.firstName} />
+            <TextInput
+              className="xs:w-full"
+              onChange={handleFirstNameChange}
+              value={formStore.firstName}
+            />
           </FormField>
-          <FormField className="ml-4" label="Фамилия">
-            <TextInput onChange={handleLastNameChange} value={formStore.lastName} />
+          <FormField className="md:ml-4" label="Фамилия">
+            <TextInput
+              className="xs:w-full"
+              onChange={handleLastNameChange}
+              value={formStore.lastName}
+            />
           </FormField>
         </div>
         <div className="mt-4">

@@ -19,7 +19,7 @@ const PageWrapper = ({ children, store }) => {
 
   return (
     <div className="flex max-w-screen-xl min-h-screen mx-auto">
-      <Sidebar className={isSideOpen ? 'sm:translate-x-0' : 'sm:-translate-x-full'} />
+      <Sidebar className={isSideOpen ? 'xs:translate-x-0' : 'xs:-translate-x-full'} />
       <div className="bg-gray-100 border-r flex-grow">
         <Header toggleSidebar={toggleSidebar} />
         {store.isReady ? (
