@@ -26,6 +26,9 @@ module.exports = {
     inset: {
       '1/2': '50%',
     },
+    screens: {
+      sm: { max: '767px' },
+    },
   },
   variants: {
     textColor: ['group-hover', 'hover'],
