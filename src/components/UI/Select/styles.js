@@ -22,6 +22,7 @@ const selectStyles = {
     borderColor: isFocused ? colors.primary : colors.gray400,
     boxShadow: 'none',
     cursor: 'pointer',
+    fontSize: '.875rem',
     minHeight: '2rem',
   }),
   dropdownIndicator: (base, { isFocused }) => ({

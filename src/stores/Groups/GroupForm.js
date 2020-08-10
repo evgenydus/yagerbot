@@ -84,6 +84,7 @@ export default class GroupForm {
           group: new GroupModel(groupData, this.groupsStore),
           rawGroup: groupData,
         })
+        this.groupsStore.rootStore.usersStore.load()
         this.cancelEdit()
       })
       .finally(() => {
