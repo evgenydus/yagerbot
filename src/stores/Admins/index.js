@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx'
 import AdminModel from './AdminModel'
 
-export default class Admins {
+export default class AdminsStore {
   rootStore
 
   @observable rawData = []

@@ -40,6 +40,14 @@
   @apply text-primary
 }
 
+.link-underline {
+  @apply cursor-pointer text-primary underline;
+}
+
+.link-underline:hover {
+  @apply text-primary-dark
+}
+
 .link-alert {
   @apply cursor-pointer text-gray-800;
 }

@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx'
 import UserModel from './UserModel'
 
-export default class Users {
+export default class UsersStore {
   rootStore
 
   @observable rawData = []
