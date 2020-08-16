@@ -15,9 +15,9 @@ const propsByType = {
 
 const showToast = (message, type = 'success', customProps = {}) => {
   toast.info(message, {
-    className: classnames('text-white', propsByType[type].className),
+    className: classnames('text-white', propsByType[type]?.className),
     position: 'bottom-right',
-    progressClassName: propsByType[type].progressClassName,
+    progressClassName: propsByType[type]?.progressClassName,
     ...customProps,
   })
 }
