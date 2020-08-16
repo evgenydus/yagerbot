@@ -1,7 +1,7 @@
 import { action, computed, observable } from 'mobx'
 import AdminModel from './AdminModel'
 
-export default class AdminForm {
+export default class AdminFormStore {
   adminsStore
 
   id = null

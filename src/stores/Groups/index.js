@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx'
 import GroupModel from './GroupModel'
 
-export default class Groups {
+export default class GroupsStore {
   rootStore
 
   @observable rawData = []

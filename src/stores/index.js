@@ -1,12 +1,16 @@
 import { action, computed, observable } from 'mobx'
 import Cookies from 'js-cookie'
-import Users from './Users'
-import Admins from './Admins'
-import Groups from './Groups'
+import AdminsStore from './Admins'
+import GroupsStore from './Groups'
+import MessagesStore from './Messages'
+import UsersStore from './Users'
 
 export default class RootStore {
   api
+
+  adminStore
   groupsStore
+  messagesStore
   usersStore
 
   @observable authToken = null
@@ -14,9 +18,12 @@ export default class RootStore {
 
   constructor({ api }) {
     this.api = api
-    this.groupsStore = new Groups(this)
-    this.usersStore = new Users(this)
-    this.adminStore = new Admins(this)
+
+    this.adminStore = new AdminsStore(this)
+    this.groupsStore = new GroupsStore(this)
+    this.messagesStore = new MessagesStore(this)
+    this.usersStore = new UsersStore(this)
+
     this.authToken = Cookies.get('authToken')
   }
 

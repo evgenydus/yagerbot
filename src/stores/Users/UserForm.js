@@ -2,7 +2,7 @@ import { action, computed, observable } from 'mobx'
 import UserModel from './UserModel'
 import showToast from '../../utils/toasts'
 
-export default class UserForm {
+export default class UserFormStore {
   usersStore
 
   @observable label

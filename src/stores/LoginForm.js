@@ -1,6 +1,6 @@
 import { action, computed, observable } from 'mobx'
 
-export default class LoginForm {
+export default class LoginFormStore {
   onSuccess
   rootStore
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
+import ManageMessage from './ManageMessage'
 
 const MessagesContent = ({ store }) => {
   return (
@@ -10,7 +11,7 @@ const MessagesContent = ({ store }) => {
       <div className="mb-4">
         {/*<MessagesList />*/}
       </div>
-      {/*<ManageMessage />*/}
+      <ManageMessage messagesStore={store.messagesStore} />
     </div>
   )
 }

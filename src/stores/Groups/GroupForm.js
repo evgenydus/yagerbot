@@ -1,7 +1,7 @@
 import { action, computed, observable } from 'mobx'
 import GroupModel from './GroupModel'
 
-export default class GroupForm {
+export default class GroupFormStore {
   id = null
   @observable name = ''
   @observable color = ''
