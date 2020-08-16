@@ -1,6 +1,6 @@
 import { action, computed, observable } from 'mobx'
 import UserModel from './UserModel'
-import showNotification from '../../utils/Notification'
+import showToast from '../../utils/toasts'
 
 export default class UserForm {
   usersStore
@@ -68,10 +68,10 @@ export default class UserForm {
         })
         this.usersStore.rootStore.groupsStore.load()
         this.cancelEdit()
-        showNotification('Пользователь изменен')
+        showToast('Пользователь изменен')
       })
       .catch(() => {
-        showNotification('Не удалось сохранить пользователя', true)
+        showToast('Не удалось сохранить пользователя', 'error')
       })
       .finally(() => {
         this.isLoading = false
