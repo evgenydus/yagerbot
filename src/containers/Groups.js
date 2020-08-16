@@ -5,7 +5,7 @@ import PageWrapper from '../components/PageWrapper'
 import GroupsContent from '../components/GroupsContent'
 
 const Groups = ({ store }) => (
-  <PageWrapper>
+  <PageWrapper store={store}>
     <GroupsContent store={store} />
   </PageWrapper>
 )

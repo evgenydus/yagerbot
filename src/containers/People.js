@@ -5,7 +5,7 @@ import PageWrapper from '../components/PageWrapper'
 import UsersContent from '../components/UsersContent'
 
 const People = ({ store }) => (
-  <PageWrapper>
+  <PageWrapper store={store}>
     <UsersContent store={store} />
   </PageWrapper>
 )

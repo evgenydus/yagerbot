@@ -5,7 +5,7 @@ import DashboardContent from '../components/DashboardContent'
 import PageWrapper from '../components/PageWrapper'
 
 const Dashboard = ({ store }) => (
-  <PageWrapper>
+  <PageWrapper store={store}>
     <DashboardContent store={store} />
   </PageWrapper>
 )

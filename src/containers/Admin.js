@@ -10,7 +10,7 @@ const Admin = ({ store }) => {
   }, [store])
 
   return (
-    <PageWrapper>
+    <PageWrapper store={store}>
       <AdminContent store={store} />
     </PageWrapper>
   )

@@ -1,14 +1,22 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import Sidebar from './Sidebar'
-import Header from './Header'
 
-const PageWrapper = ({ children }) => (
+import Header from './Header'
+import LoadIndicator from './LoadIndicator'
+import Sidebar from './Sidebar'
+
+const PageWrapper = ({ children, store }) => (
   <div className="flex max-w-screen-xl min-h-screen mx-auto">
     <Sidebar />
     <div className="bg-gray-100 border-r flex-grow">
       <Header />
-      <div>{children}</div>
+      {store.isReady ? (
+        <div>{children}</div>
+      ) : (
+        <div className="inline-block p-4">
+          <LoadIndicator />
+        </div>
+      )}
     </div>
   </div>
 )
