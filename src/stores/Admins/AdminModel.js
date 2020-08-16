@@ -7,12 +7,12 @@ export default class AdminModel {
   username
   createdAt
 
-  constructor({ created_at, id, username }, adminsStore) {
+  constructor({ createdAt, id, username }, adminsStore) {
     this.adminsStore = adminsStore
 
     this.id = id
     this.username = username
-    this.createdAt = new Date(created_at).toLocaleDateString()
+    this.createdAt = new Date(createdAt).toLocaleDateString()
   }
 
   @computed
