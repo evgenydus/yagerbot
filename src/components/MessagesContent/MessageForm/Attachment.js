@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Select from '../../UI/Select'
 
 // TODO: control attachments from formStore
@@ -13,9 +12,9 @@ const Attachment = () => {
   }
 
   return (
-    <div className="flex">
-      <div className="flex flex-1 flex-col p-2 shadow text-sm">
-        <label className="link-underline mb-2 truncate" htmlFor="attachment">
+    <div className="flex last:mb-0 mb-2">
+      <div className="flex flex-1 flex-col overflow-hidden p-2 shadow text-sm">
+        <label className="link-underline truncate" htmlFor="attachment">
           {attachmentName || 'Выбрать файл'}
         </label>
         <input
@@ -25,11 +24,12 @@ const Attachment = () => {
           onChange={handleAttachmentChange}
           type="file"
         />
-        <Select isDisabled={!attachmentName} placeholder="Тип файла" />
-      </div>
-      <div className="flex flex-col items-center justify-center pl-2">
-        <FontAwesomeIcon className="link-alert my-1" icon={['far', 'times']} />
-        <FontAwesomeIcon className="link my-1" icon={['far', 'file-plus']} />
+        {attachmentName && (
+          <>
+            <Select className="mt-4" placeholder="Тип файла" />
+            <button className="link-alert mt-2 m-auto text-red-500 w-20" type="button">Удалить</button>
+          </>
+        )}
       </div>
     </div>
   )

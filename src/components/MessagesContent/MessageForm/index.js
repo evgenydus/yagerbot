@@ -6,6 +6,7 @@ import Button from '../../UI/Button'
 import CardWrapper from '../../CardWrapper'
 import FormField from '../../UI/FormField'
 import TextInput from '../../UI/TextInput'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const MessageForm = ({ messagesStore }) => {
   return (
@@ -25,9 +26,14 @@ const MessageForm = ({ messagesStore }) => {
         </FormField>
         <FormField label="Вложения">
           <Attachment />
+          <Button className="h-6 opacity-50 w-full" mode="secondary">
+            <FontAwesomeIcon icon={['far', 'plus']} />
+          </Button>
         </FormField>
         <div className="flex justify-end mt-3">
-          <Button mode="gray" onClick={messagesStore.toggleMessageCreation}>Отмена</Button>
+          <Button mode="gray" onClick={messagesStore.toggleMessageCreation}>
+            Отмена
+          </Button>
           <Button className="ml-2">Сохранить</Button>
         </div>
       </form>
