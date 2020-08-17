@@ -3,6 +3,8 @@ import { action, observable } from 'mobx'
 export default class MessagesStore {
   rootStore
 
+  @observable rawData = []
+  @observable messages = []
   @observable isMessageCreation
 
   constructor(rootStore) {

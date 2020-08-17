@@ -66,6 +66,7 @@ const selectStyles = {
       backgroundColor: colors.gray400,
     },
     backgroundColor: isFocused && colors.gray300,
+    color: '#000',
     cursor: 'pointer',
     fontSize: '0.875rem',
   }),
