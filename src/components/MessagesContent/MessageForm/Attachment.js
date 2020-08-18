@@ -2,18 +2,17 @@ import React, { useState } from 'react'
 import { observer } from 'mobx-react'
 
 import Select from '../../UI/Select'
-import { fileTypes } from '../../../constants'
 
 // TODO: control attachments from formStore
 
-const Attachment = () => {
+const Attachment = ({ formStore }) => {
   const [attachmentName, setAttachmentName] = useState('')
 
   const handleAttachmentChange = ({ target: { value } }) => {
     setAttachmentName(value)
   }
 
-  const defaultOption = fileTypes.find(option => option.value === 'audio')
+  const defaultOption = formStore.typeOptions.find(option => option.label === 'Аудио')
 
   return (
     <div className="flex last:mb-0 mb-2">
@@ -33,7 +32,7 @@ const Attachment = () => {
             <Select
               className="mt-4"
               defaultValue={defaultOption}
-              options={fileTypes}
+              options={formStore.typeOptions}
               placeholder="Тип файла"
             />
             <button className="link-alert mt-2 m-auto text-red-500 w-20" type="button">
