@@ -12,7 +12,7 @@ export default class MessageFormStore {
 
   constructor(messagesStore, message) {
     this.messagesStore = messagesStore
-    this.attachments.push(new AttachmentModel(messagesStore))
+    this.attachments.push(new AttachmentModel(this))
 
     if (message) {
       this.id = message.id
@@ -31,6 +31,11 @@ export default class MessageFormStore {
 
   get typeOptions() {
     return Object.keys(fileTypes).map(type => ({ label: fileTypes[type], value: type }))
+  }
+
+  @action
+  addAttachment = () => {
+    this.attachments.push(new AttachmentModel(this))
   }
 
   @action
