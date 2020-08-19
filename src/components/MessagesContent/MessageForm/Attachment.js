@@ -8,6 +8,10 @@ const Attachment = ({ attachment }) => {
     attachment.setFileInputValue(value)
   }
 
+  const handleAttachmentRemove = () => {
+    attachment.destroy(attachment.id)
+  }
+
   const defaultOption = attachment.messageFormStore.typeOptions.find(
     option => option.label === 'Аудио',
   )
@@ -34,9 +38,15 @@ const Attachment = ({ attachment }) => {
               options={attachment.messageFormStore.typeOptions}
               placeholder="Тип файла"
             />
-            <button className="link-alert mt-2 m-auto text-red-500 w-20" type="button">
-              Удалить
-            </button>
+            {attachment.messageFormStore.attachments.length > 1 && (
+              <button
+                className="link-alert mt-2 m-auto text-red-500 w-20"
+                onClick={handleAttachmentRemove}
+                type="button"
+              >
+                Удалить
+              </button>
+            )}
           </>
         )}
       </div>

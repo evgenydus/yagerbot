@@ -53,4 +53,10 @@ export default class MessageFormStore {
   setText(value) {
     this.text = value
   }
+
+  @action
+  removeAttachment(id) {
+    const newAttachments = this.attachments.filter(attachment => attachment.id !== id)
+    this.attachments.replace(newAttachments)
+  }
 }
