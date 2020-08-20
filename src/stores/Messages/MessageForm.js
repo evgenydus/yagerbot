@@ -1,5 +1,6 @@
 import { action, observable } from 'mobx'
 import { fileTypes } from '../../constants'
+import AttachmentModel from './AttachmentModel'
 
 export default class MessageFormStore {
   messagesStore
@@ -7,9 +8,11 @@ export default class MessageFormStore {
   id = null
   @observable title = ''
   @observable text = ''
+  @observable attachments = []
 
   constructor(messagesStore, message) {
     this.messagesStore = messagesStore
+    this.attachments.push(new AttachmentModel(messagesStore))
 
     if (message) {
       this.id = message.id
