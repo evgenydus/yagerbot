@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { observer } from 'mobx-react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Attachment from './Attachment'
+import AttachmentList from './AttachmentList'
 import Button from '../../UI/Button'
 import CardWrapper from '../../CardWrapper'
-import FormField from '../../UI/FormField'
 import FormButtons from '../../UI/FormButtons'
-import TextInput from '../../UI/TextInput'
+import FormField from '../../UI/FormField'
 import MessageFormStore from '../../../stores/Messages/MessageForm'
+import TextInput from '../../UI/TextInput'
 
 const MessageForm = ({ messagesStore }) => {
   const [formStore] = useState(() => new MessageFormStore(messagesStore))
@@ -39,8 +39,12 @@ const MessageForm = ({ messagesStore }) => {
           />
         </FormField>
         <FormField label="Вложения">
-          <Attachment formStore={formStore} />
-          <Button className="h-6 opacity-50 mb-3 w-full" mode="secondary">
+          <AttachmentList formStore={formStore} />
+          <Button
+            className="h-6 opacity-50 mb-3 w-full"
+            mode="secondary"
+            onClick={formStore.addAttachment}
+          >
             <FontAwesomeIcon icon={['far', 'plus']} />
           </Button>
         </FormField>

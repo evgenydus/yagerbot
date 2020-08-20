@@ -1,12 +1,18 @@
 import _uniqueId from 'lodash/uniqueId'
+import { action, observable } from 'mobx'
 
 export default class AttachmentModel {
-  messagesStore
+  messageFormStore
 
-  id = _uniqueId()
-  name = ''
+  id = _uniqueId('attachment-')
+  @observable fileInputValue = ''
 
-  constructor(messagesStore) {
-    this.messagesStore = messagesStore
+  constructor(messageFormStore) {
+    this.messageFormStore = messageFormStore
+  }
+
+  @action
+  setFileInputValue(value) {
+    this.fileInputValue = value
   }
 }
