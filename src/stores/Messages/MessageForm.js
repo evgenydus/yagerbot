@@ -53,4 +53,9 @@ export default class MessageFormStore {
   setText(value) {
     this.text = value
   }
+
+  @action
+  removeAttachment(attachment) {
+    this.attachments.remove(attachment)
+  }
 }
