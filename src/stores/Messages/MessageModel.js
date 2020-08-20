@@ -4,14 +4,16 @@ export default class MessageModel {
   id
   title = ''
   text = ''
+  attachments = []
   isSent
 
-  constructor({ id, isSent, text, title }, messagesStore) {
+  constructor({ attachments, id, isSent, text, title }, messagesStore) {
     this.messagesStore = messagesStore
 
     this.id = id
     this.title = title
     this.text = text
+    this.attachments = attachments
     this.isSent = isSent
   }
 }

@@ -1,5 +1,5 @@
-import _uniqueId from 'lodash/uniqueId'
 import { action, observable } from 'mobx'
+import _uniqueId from 'lodash/uniqueId'
 
 export default class AttachmentModel {
   messageFormStore
