@@ -55,8 +55,7 @@ export default class MessageFormStore {
   }
 
   @action
-  removeAttachment(id) {
-    const newAttachments = this.attachments.filter(attachment => attachment.id !== id)
-    this.attachments.replace(newAttachments)
+  removeAttachment(attachment) {
+    this.attachments.remove(attachment)
   }
 }

@@ -9,7 +9,7 @@ const Attachment = ({ attachment }) => {
   }
 
   const handleAttachmentRemove = () => {
-    attachment.destroy(attachment.id)
+    attachment.destroy()
   }
 
   const defaultOption = attachment.messageFormStore.typeOptions.find(

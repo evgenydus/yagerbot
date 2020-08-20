@@ -17,6 +17,6 @@ export default class AttachmentModel {
   }
 
   destroy = () => {
-    this.messageFormStore.removeAttachment(this.id)
+    this.messageFormStore.removeAttachment(this)
   }
 }
