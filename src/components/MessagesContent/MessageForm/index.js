@@ -22,6 +22,7 @@ const MessageForm = ({ messagesStore }) => {
   const handleSubmit = event => {
     event.preventDefault()
     messagesStore.addMessage(formStore.requestPayload)
+    messagesStore.toggleMessageCreation()
   }
 
   return (
@@ -29,13 +30,20 @@ const MessageForm = ({ messagesStore }) => {
       <form className="w-full" onSubmit={handleSubmit}>
         <div className="mb-4">Создание сообщения</div>
         <FormField className="mb-4" label="Название">
-          <TextInput autoFocus className="w-full" onChange={handleTitleChange} required />
+          <TextInput
+            autoFocus
+            className="w-full"
+            onChange={handleTitleChange}
+            required
+            value={formStore.title}
+          />
         </FormField>
         <FormField className="mb-2" label="Текст сообщения">
           <textarea
             className="input-text input-text-sm py-1 w-full"
             onChange={handleTextChange}
             required
+            value={formStore.text}
           />
         </FormField>
         <FormField label="Вложения">

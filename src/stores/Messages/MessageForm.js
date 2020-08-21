@@ -1,28 +1,24 @@
 import { action, observable } from 'mobx'
+import _uniqueId from 'lodash/uniqueId'
 import { fileTypes } from '../../constants'
 import AttachmentModel from './AttachmentModel'
 
 export default class MessageFormStore {
   messagesStore
 
-  id = null
+  id = _uniqueId('message-')
   @observable title = ''
   @observable text = ''
   @observable attachments = []
 
-  constructor(messagesStore, message) {
+  constructor(messagesStore) {
     this.messagesStore = messagesStore
     this.attachments.push(new AttachmentModel(this))
-
-    if (message) {
-      this.id = message.id
-      this.title = message.title
-      this.text = message.text
-    }
   }
 
   get requestPayload() {
     return {
+      attachments: this.attachments.map(attachment => attachment.asJSON),
       id: this.id,
       text: this.text,
       title: this.title,
@@ -42,6 +38,7 @@ export default class MessageFormStore {
   resetForm() {
     this.title = ''
     this.text = ''
+    this.attachments.replace([new AttachmentModel(this)])
   }
 
   @action

@@ -1,5 +1,5 @@
-import _uniqueId from 'lodash/uniqueId'
 import { action, observable } from 'mobx'
+import _uniqueId from 'lodash/uniqueId'
 
 export default class AttachmentModel {
   messageFormStore
@@ -14,6 +14,13 @@ export default class AttachmentModel {
   @action
   setFileInputValue(value) {
     this.fileInputValue = value
+  }
+
+  get asJSON() {
+    return {
+      fileInputValue: this.fileInputValue,
+      id: this.id,
+    }
   }
 
   destroy = () => {
