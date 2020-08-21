@@ -18,7 +18,7 @@ export default class MessageFormStore {
 
   get requestPayload() {
     return {
-      attachments: this.attachments,
+      attachments: this.attachments.map(attachment => attachment.asJSON),
       id: this.id,
       text: this.text,
       title: this.title,

@@ -16,6 +16,13 @@ export default class AttachmentModel {
     this.fileInputValue = value
   }
 
+  get asJSON() {
+    return {
+      fileInputValue: this.fileInputValue,
+      id: this.id,
+    }
+  }
+
   destroy = () => {
     this.messageFormStore.removeAttachment(this)
   }
