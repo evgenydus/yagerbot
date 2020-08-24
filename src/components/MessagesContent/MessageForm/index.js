@@ -52,13 +52,15 @@ const MessageForm = ({ messagesStore }) => {
         </FormField>
         <FormField label="Вложения">
           <AttachmentList formStore={formStore} />
-          <Button
-            className="h-6 opacity-50 mb-3 w-full"
-            mode="secondary"
-            onClick={formStore.addAttachment}
-          >
-            <FontAwesomeIcon icon={['far', 'plus']} />
-          </Button>
+          {formStore.isAddButtonVisible && (
+            <Button
+              className="h-6 opacity-50 mb-3 w-full"
+              mode="secondary"
+              onClick={formStore.addAttachment}
+            >
+              <FontAwesomeIcon icon={['far', 'plus']} />
+            </Button>
+          )}
         </FormField>
         <FormButtons onCancel={messagesStore.toggleMessageCreation} />
       </form>
