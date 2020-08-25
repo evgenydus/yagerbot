@@ -4,8 +4,9 @@ import { observer } from 'mobx-react'
 import Select from '../../UI/Select'
 
 const Attachment = ({ attachment }) => {
-  const handleAttachmentChange = ({ target: { value } }) => {
-    attachment.setFileInputValue(value)
+  const handleAttachmentChange = ({ target: { files } }) => {
+    attachment.setSelectedFile(files[0])
+    attachment.messageFormStore.updateAttachmentsList()
   }
 
   const handleAttachmentRemove = () => {
@@ -20,17 +21,17 @@ const Attachment = ({ attachment }) => {
     <div className="flex last:mb-0 mb-2">
       <div className="flex flex-1 flex-col max-w-full p-2 shadow text-sm">
         <label className="link-underline truncate overflow-hidden" htmlFor={attachment.id}>
-          {attachment.fileInputValue || 'Выбрать файл'}
+          {attachment.selectedFile?.name || 'Выбрать файл'}
         </label>
         <input
           className="hidden"
+          files={[attachment.selectedFile]}
           id={attachment.id}
           name="attachment"
           onChange={handleAttachmentChange}
           type="file"
-          value={attachment.fileInputValue}
         />
-        {attachment.fileInputValue && (
+        {attachment.selectedFile && (
           <>
             <Select
               className="mt-4"

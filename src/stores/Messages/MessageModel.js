@@ -1,19 +1,26 @@
+import { computed } from 'mobx'
+import _uniqueId from 'lodash/uniqueId'
+
 export default class MessageModel {
   messagesStore
 
-  id
+  id = _uniqueId('message-')
   title = ''
   text = ''
   attachments = []
   isSent
 
-  constructor({ attachments, id, isSent, text, title }, messagesStore) {
+  constructor({ attachments, isSent, text, title }, messagesStore) {
     this.messagesStore = messagesStore
 
-    this.id = id
     this.title = title
     this.text = text
     this.attachments = attachments
     this.isSent = isSent
+  }
+
+  @computed
+  get attachmentsAmount() {
+    return this.attachments.length
   }
 }

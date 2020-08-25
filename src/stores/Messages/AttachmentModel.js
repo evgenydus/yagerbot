@@ -5,21 +5,21 @@ export default class AttachmentModel {
   messageFormStore
 
   id = _uniqueId('attachment-')
-  @observable fileInputValue = ''
+  @observable selectedFile = null
 
   constructor(messageFormStore) {
     this.messageFormStore = messageFormStore
   }
 
   @action
-  setFileInputValue(value) {
-    this.fileInputValue = value
+  setSelectedFile(value) {
+    this.selectedFile = value
   }
 
   get asJSON() {
     return {
-      fileInputValue: this.fileInputValue,
       id: this.id,
+      selectedFile: this.selectedFile,
     }
   }
 

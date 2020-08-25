@@ -1,12 +1,11 @@
 import { action, computed, observable } from 'mobx'
-import _uniqueId from 'lodash/uniqueId'
 import { fileTypes } from '../../constants'
 import AttachmentModel from './AttachmentModel'
 
 export default class MessageFormStore {
   messagesStore
 
-  id = _uniqueId('message-')
+  id = null
   @observable title = ''
   @observable text = ''
   @observable attachments = []
@@ -16,9 +15,10 @@ export default class MessageFormStore {
     this.attachments.push(new AttachmentModel(this))
   }
 
+  @computed
   get requestPayload() {
     return {
-      attachments: this.attachments.map(attachment => attachment.asJSON),
+      attachments: this.trimAttachments(),
       id: this.id,
       text: this.text,
       title: this.title,
@@ -31,7 +31,18 @@ export default class MessageFormStore {
 
   @computed
   get isAddButtonVisible() {
-    return this.attachments.every(attachment => attachment.fileInputValue)
+    return this.attachments.every(attachment => attachment.selectedFile)
+  }
+
+  @action
+  trimAttachments() {
+    return this.attachments.filter(attachment => attachment.selectedFile)
+  }
+
+  @action
+  updateAttachmentsList() {
+    if (this.attachments.some(attachment => !attachment.selectedFile))
+      this.attachments.replace([...this.trimAttachments(), new AttachmentModel(this)])
   }
 
   @action
