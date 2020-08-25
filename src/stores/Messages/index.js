@@ -20,4 +20,10 @@ export default class MessagesStore {
   toggleMessageCreation = () => {
     this.isMessageCreation = !this.isMessageCreation
   }
+
+  @action
+  removeMessage(id) {
+    const newMessages = this.messages.filter(message => message.id !== id)
+    this.messages.replace(newMessages)
+  }
 }

@@ -17,4 +17,8 @@ export default class MessageModel {
     this.attachments = attachments
     this.isSent = isSent
   }
+
+  destroy = () => {
+    this.messagesStore.removeMessage(this.id)
+  }
 }
