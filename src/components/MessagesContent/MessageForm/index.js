@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react'
+import { css } from '@emotion/core'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AttachmentList from './AttachmentList'
@@ -41,6 +42,9 @@ const MessageForm = ({ messagesStore }) => {
         <FormField className="mb-2" label="Текст сообщения">
           <textarea
             className="input-text input-text-sm py-1 w-full"
+            css={css`
+              min-height: 5rem;
+            `}
             onChange={handleTextChange}
             required
             value={formStore.text}
@@ -56,7 +60,7 @@ const MessageForm = ({ messagesStore }) => {
             <FontAwesomeIcon icon={['far', 'plus']} />
           </Button>
         </FormField>
-        <FormButtons itemId={formStore.id} onCancel={messagesStore.toggleMessageCreation} />
+        <FormButtons onCancel={messagesStore.toggleMessageCreation} />
       </form>
     </CardWrapper>
   )
