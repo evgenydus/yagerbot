@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx'
+import { action, computed, observable } from 'mobx'
 import _uniqueId from 'lodash/uniqueId'
 import { fileTypes } from '../../constants'
 import AttachmentModel from './AttachmentModel'
@@ -27,6 +27,11 @@ export default class MessageFormStore {
 
   get typeOptions() {
     return Object.keys(fileTypes).map(type => ({ label: fileTypes[type], value: type }))
+  }
+
+  @computed
+  get isAddButtonVisible() {
+    return this.attachments.every(attachment => attachment.fileInputValue)
   }
 
   @action
