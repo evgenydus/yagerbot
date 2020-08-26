@@ -11,8 +11,8 @@ import FormField from '../../UI/FormField'
 import MessageFormStore from '../../../stores/Messages/MessageForm'
 import TextInput from '../../UI/TextInput'
 
-const MessageForm = ({ messagesStore }) => {
-  const [formStore] = useState(() => new MessageFormStore(messagesStore))
+const MessageForm = ({ messagesStore, message }) => {
+  const [formStore] = useState(() => new MessageFormStore(messagesStore, message))
 
   const handleTitleChange = ({ target: { value } }) => {
     formStore.setTitle(value)
@@ -22,6 +22,13 @@ const MessageForm = ({ messagesStore }) => {
 
   const handleSubmit = event => {
     event.preventDefault()
+
+    if (formStore.id) {
+      formStore.updateData()
+
+      return
+    }
+
     messagesStore.addMessage(formStore.requestPayload)
     messagesStore.toggleMessageCreation()
   }
@@ -29,7 +36,9 @@ const MessageForm = ({ messagesStore }) => {
   return (
     <CardWrapper className="flex max-w-sm">
       <form className="w-full" onSubmit={handleSubmit}>
-        <div className="mb-4">Создание сообщения</div>
+        <div className="mb-4">
+          {formStore.id ? <div>Редактирование сообщения</div> : <div>Создание сообщения</div>}
+        </div>
         <FormField className="mb-4" label="Название">
           <TextInput
             autoFocus
@@ -62,7 +71,10 @@ const MessageForm = ({ messagesStore }) => {
             </Button>
           )}
         </FormField>
-        <FormButtons onCancel={messagesStore.toggleMessageCreation} />
+        <FormButtons
+          itemId={formStore.id}
+          onCancel={formStore.id ? formStore.cancelEdit : messagesStore.toggleMessageCreation}
+        />
       </form>
     </CardWrapper>
   )

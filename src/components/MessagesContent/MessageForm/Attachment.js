@@ -8,10 +8,6 @@ const Attachment = ({ attachment }) => {
     attachment.setSelectedFile(files[0])
   }
 
-  const handleAttachmentRemove = () => {
-    attachment.destroy()
-  }
-
   const defaultOption = attachment.messageFormStore.typeOptions.find(
     option => option.label === 'Аудио',
   )
@@ -41,7 +37,7 @@ const Attachment = ({ attachment }) => {
             {attachment.messageFormStore.attachments.length > 1 && (
               <button
                 className="link-alert mt-2 m-auto text-red-500 w-20"
-                onClick={handleAttachmentRemove}
+                onClick={attachment.destroy}
                 type="button"
               >
                 Удалить

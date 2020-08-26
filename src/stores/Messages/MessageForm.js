@@ -1,6 +1,9 @@
 import { action, computed, observable, reaction } from 'mobx'
 import { fileTypes } from '../../constants'
 import AttachmentModel from './AttachmentModel'
+import MessageModel from './MessageModel'
+
+// TODO: Fix attachment edit
 
 export default class MessageFormStore {
   messagesStore
@@ -10,9 +13,17 @@ export default class MessageFormStore {
   @observable text = ''
   @observable attachments = []
 
-  constructor(messagesStore) {
+  constructor(messagesStore, message) {
     this.messagesStore = messagesStore
-    this.attachments.push(new AttachmentModel(this))
+
+    if (message) {
+      this.id = message.id
+      this.title = message.title
+      this.text = message.text
+      this.attachments.replace(message.attachments)
+    } else {
+      this.attachments.push(new AttachmentModel(this))
+    }
 
     reaction(
       () => this.emptyAttachmentsCount,
@@ -64,6 +75,11 @@ export default class MessageFormStore {
   }
 
   @action
+  cancelEdit = () => {
+    this.messagesStore.setMessageToEdit(null)
+  }
+
+  @action
   resetForm() {
     this.title = ''
     this.text = ''
@@ -83,5 +99,11 @@ export default class MessageFormStore {
   @action
   removeAttachment(attachment) {
     this.attachments.remove(attachment)
+  }
+
+  @action
+  updateData = () => {
+    this.messagesStore.updateMessage(new MessageModel(this.requestPayload, this.messagesStore))
+    this.cancelEdit()
   }
 }
