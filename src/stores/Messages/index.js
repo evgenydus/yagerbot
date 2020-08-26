@@ -22,8 +22,7 @@ export default class MessagesStore {
   }
 
   @action
-  removeMessage(id) {
-    const newMessages = this.messages.filter(message => message.id !== id)
-    this.messages.replace(newMessages)
+  removeMessage(message) {
+    this.messages.remove(message)
   }
 }

@@ -19,6 +19,6 @@ export default class MessageModel {
   }
 
   destroy = () => {
-    this.messagesStore.removeMessage(this.id)
+    this.messagesStore.removeMessage(this)
   }
 }
