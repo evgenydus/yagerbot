@@ -20,4 +20,9 @@ export default class MessagesStore {
   toggleMessageCreation = () => {
     this.isMessageCreation = !this.isMessageCreation
   }
+
+  @action
+  removeMessage(message) {
+    this.messages.remove(message)
+  }
 }
