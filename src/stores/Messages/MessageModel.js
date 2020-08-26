@@ -1,4 +1,3 @@
-import { computed } from 'mobx'
 import _uniqueId from 'lodash/uniqueId'
 
 export default class MessageModel {
@@ -17,10 +16,5 @@ export default class MessageModel {
     this.text = text
     this.attachments = attachments
     this.isSent = isSent
-  }
-
-  @computed
-  get attachmentsAmount() {
-    return this.attachments.length
   }
 }

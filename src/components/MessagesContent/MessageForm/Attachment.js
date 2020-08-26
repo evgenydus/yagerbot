@@ -6,7 +6,6 @@ import Select from '../../UI/Select'
 const Attachment = ({ attachment }) => {
   const handleAttachmentChange = ({ target: { files } }) => {
     attachment.setSelectedFile(files[0])
-    attachment.messageFormStore.updateAttachmentsList()
   }
 
   const handleAttachmentRemove = () => {

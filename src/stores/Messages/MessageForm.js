@@ -1,4 +1,4 @@
-import { action, computed, observable } from 'mobx'
+import { action, computed, observable, reaction } from 'mobx'
 import { fileTypes } from '../../constants'
 import AttachmentModel from './AttachmentModel'
 
@@ -13,12 +13,21 @@ export default class MessageFormStore {
   constructor(messagesStore) {
     this.messagesStore = messagesStore
     this.attachments.push(new AttachmentModel(this))
+
+    reaction(
+      () => this.emptyAttachmentsCount,
+      count => {
+        if (count > 1) {
+          this.refreshAttachmentsList()
+        }
+      },
+    )
   }
 
   @computed
   get requestPayload() {
     return {
-      attachments: this.trimAttachments(),
+      attachments: this.filledAttachments,
       id: this.id,
       text: this.text,
       title: this.title,
@@ -34,15 +43,19 @@ export default class MessageFormStore {
     return this.attachments.every(attachment => attachment.selectedFile)
   }
 
-  @action
-  trimAttachments() {
-    return this.attachments.filter(attachment => attachment.selectedFile)
+  @computed
+  get emptyAttachmentsCount() {
+    return this.attachments.filter(attachment => !attachment.selectedFile).length
+  }
+
+  @computed
+  get filledAttachments() {
+    return this.attachments.filter(attachment => Boolean(attachment.selectedFile))
   }
 
   @action
-  updateAttachmentsList() {
-    if (this.attachments.some(attachment => !attachment.selectedFile))
-      this.attachments.replace([...this.trimAttachments(), new AttachmentModel(this)])
+  refreshAttachmentsList() {
+    this.attachments.replace([...this.filledAttachments, new AttachmentModel(this)])
   }
 
   @action
