@@ -4,6 +4,9 @@ module.exports = {
   corePlugins: {
     outline: false,
   },
+  future: {
+    removeDeprecatedGapUtilities: true,
+  },
   plugins: [],
   purge: {
     content: ['./src/**/*.html', './src/**/*.js'],
