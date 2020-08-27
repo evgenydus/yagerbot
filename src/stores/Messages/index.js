@@ -13,7 +13,7 @@ export default class MessagesStore {
   }
 
   @computed
-  get isMessagesListVisible() {
+  get hasMessages() {
     return Boolean(this.rootStore.totalMessagesCount)
   }
 
