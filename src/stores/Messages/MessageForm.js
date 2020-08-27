@@ -13,17 +13,9 @@ export default class MessageFormStore {
   @observable text = ''
   @observable attachments = []
 
-  constructor(messagesStore, message) {
+  constructor(messagesStore) {
     this.messagesStore = messagesStore
-
-    if (message) {
-      this.id = message.id
-      this.title = message.title
-      this.text = message.text
-      this.attachments.replace(message.attachments)
-    } else {
-      this.attachments.push(new AttachmentModel(this))
-    }
+    this.setFormData(messagesStore.messageToEdit)
 
     reaction(
       () => this.emptyAttachmentsCount,
@@ -84,6 +76,20 @@ export default class MessageFormStore {
     this.title = ''
     this.text = ''
     this.attachments.replace([new AttachmentModel(this)])
+  }
+
+  @action
+  setFormData(message) {
+    if (message) {
+      const { attachments, id, text, title } = message
+
+      this.id = id
+      this.title = title
+      this.text = text
+      this.attachments.replace(attachments)
+    } else {
+      this.attachments.push(new AttachmentModel(this))
+    }
   }
 
   @action

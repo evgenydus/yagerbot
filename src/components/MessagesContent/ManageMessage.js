@@ -6,13 +6,7 @@ import MessageForm from './MessageForm'
 
 const ManageMessage = ({ messagesStore }) => {
   if (messagesStore.messageToEdit)
-    return (
-      <MessageForm
-        key="edit-message"
-        message={messagesStore.messageToEdit}
-        messagesStore={messagesStore}
-      />
-    )
+    return <MessageForm key="edit-message" messagesStore={messagesStore} />
 
   if (!messagesStore.isMessageCreation)
     return <Button onClick={messagesStore.toggleMessageCreation}>Новое сообщение</Button>

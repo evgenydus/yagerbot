@@ -11,8 +11,8 @@ import FormField from '../../UI/FormField'
 import MessageFormStore from '../../../stores/Messages/MessageForm'
 import TextInput from '../../UI/TextInput'
 
-const MessageForm = ({ messagesStore, message }) => {
-  const [formStore] = useState(() => new MessageFormStore(messagesStore, message))
+const MessageForm = ({ messagesStore }) => {
+  const [formStore] = useState(() => new MessageFormStore(messagesStore))
 
   const handleTitleChange = ({ target: { value } }) => {
     formStore.setTitle(value)
