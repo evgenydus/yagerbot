@@ -9,13 +9,12 @@ export default class GroupForm {
 
   @observable isLoading = false
 
-  constructor(groupsStore, group) {
+  constructor(groupsStore) {
     this.groupsStore = groupsStore
+    const group = groupsStore.groupToEdit
+
     if (group) {
-      this.id = group.id
-      this.name = group.name
-      this.color = group.color
-      this.userIds = group.userIds.slice()
+      this.setFormData(group)
     }
   }
 
@@ -59,6 +58,14 @@ export default class GroupForm {
   @action
   setColor(value) {
     this.color = value
+  }
+
+  @action
+  setFormData({ color, id, name, userIds }) {
+    this.id = id
+    this.name = name
+    this.color = color
+    this.userIds = userIds.slice()
   }
 
   @action

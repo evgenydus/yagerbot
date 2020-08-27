@@ -8,8 +8,8 @@ import FormField from '../UI/FormField'
 import Select from '../UI/Select'
 import TextInput from '../UI/TextInput'
 
-const GroupForm = ({ group, groupsStore }) => {
-  const [formStore] = useState(() => new GroupFormStore(groupsStore, group))
+const GroupForm = ({ groupsStore }) => {
+  const [formStore] = useState(() => new GroupFormStore(groupsStore))
 
   const nameInputRef = useRef(null)
 

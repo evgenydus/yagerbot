@@ -11,10 +11,7 @@ export default class UserForm {
 
   constructor(usersStore) {
     const user = usersStore.userToEdit || usersStore.users[0]
-    this.user = user
-    this.label = user.label
-    this.groupIds = user.groupIds.slice()
-
+    this.setFormData(user)
     this.usersStore = usersStore
   }
 
@@ -41,6 +38,13 @@ export default class UserForm {
   @computed
   get selectedGroups() {
     return this.groupIds.map(id => this.groupsAsOptions.find(option => option.value === id))
+  }
+
+  @action
+  setFormData(user) {
+    this.user = user
+    this.label = user.label
+    this.groupIds = user.groupIds.slice()
   }
 
   @action
