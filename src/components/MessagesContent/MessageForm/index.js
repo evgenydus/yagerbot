@@ -34,7 +34,7 @@ const MessageForm = ({ messagesStore, message }) => {
   }
 
   return (
-    <CardWrapper className="flex max-w-sm">
+    <CardWrapper className="flex max-w-sm xs:max-w-xs xs:mx-auto">
       <form className="w-full" onSubmit={handleSubmit}>
         <div className="mb-4">
           {formStore.id ? <div>Редактирование сообщения</div> : <div>Создание сообщения</div>}

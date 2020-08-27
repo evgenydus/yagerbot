@@ -15,7 +15,11 @@ const ManageMessage = ({ messagesStore }) => {
     )
 
   if (!messagesStore.isMessageCreation)
-    return <Button onClick={messagesStore.toggleMessageCreation}>Новое сообщение</Button>
+    return (
+      <Button className="xs:mx-auto" onClick={messagesStore.toggleMessageCreation}>
+        Новое сообщение
+      </Button>
+    )
 
   return <MessageForm key="create-message" messagesStore={messagesStore} />
 }
