@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { observer } from 'mobx-react'
 import { css } from '@emotion/core'
 
@@ -13,6 +13,10 @@ import TextInput from '../../UI/TextInput'
 
 const MessageForm = ({ messagesStore }) => {
   const [formStore] = useState(() => new MessageFormStore(messagesStore))
+
+  useEffect(() => {
+    formStore.setFormData(messagesStore.messageToEdit)
+  }, [])
 
   const handleTitleChange = ({ target: { value } }) => {
     formStore.setTitle(value)

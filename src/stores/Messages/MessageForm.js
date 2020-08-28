@@ -15,7 +15,6 @@ export default class MessageFormStore {
 
   constructor(messagesStore) {
     this.messagesStore = messagesStore
-    this.setFormData(messagesStore.messageToEdit)
 
     reaction(
       () => this.emptyAttachmentsCount,
