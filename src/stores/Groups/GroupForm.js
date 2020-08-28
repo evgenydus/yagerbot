@@ -11,11 +11,6 @@ export default class GroupForm {
 
   constructor(groupsStore) {
     this.groupsStore = groupsStore
-    const group = groupsStore.groupToEdit
-
-    if (group) {
-      this.setFormData(group)
-    }
   }
 
   get api() {

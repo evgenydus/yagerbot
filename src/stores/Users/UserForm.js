@@ -10,7 +10,7 @@ export default class UserForm {
   @observable isLoading
 
   constructor(usersStore) {
-    const user = usersStore.userToEdit || usersStore.users[0]
+    const user = usersStore.userToEdit
     this.setFormData(user)
     this.usersStore = usersStore
   }

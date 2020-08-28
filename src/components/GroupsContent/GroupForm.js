@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { observer } from 'mobx-react'
 import GroupFormStore from '../../stores/Groups/GroupForm'
 
@@ -10,6 +10,12 @@ import TextInput from '../UI/TextInput'
 
 const GroupForm = ({ groupsStore }) => {
   const [formStore] = useState(() => new GroupFormStore(groupsStore))
+
+  useEffect(() => {
+    if (groupsStore.groupToEdit) {
+      formStore.setFormData(groupsStore.groupToEdit)
+    }
+  }, [])
 
   const nameInputRef = useRef(null)
 
