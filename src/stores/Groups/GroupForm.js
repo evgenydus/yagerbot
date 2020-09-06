@@ -94,6 +94,7 @@ export default class GroupForm {
 
   cancelEdit = () => {
     this.groupsStore.setGroupToEdit(null)
+    this.groupsStore.rootStore.modalsStore.closeModal()
   }
 
   sendData() {

@@ -65,6 +65,10 @@ export default class Groups {
   @action
   toggleGroupCreation = () => {
     this.isGroupCreation = !this.isGroupCreation
+    // TODO: Discuss eslint rule 'no-unused-expressions'
+    this.isGroupCreation
+      ? this.rootStore.modalsStore.openModal()
+      : this.rootStore.modalsStore.closeModal()
   }
 
   @action
