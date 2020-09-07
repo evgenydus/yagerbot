@@ -1,12 +1,12 @@
 import { action, observable } from 'mobx'
 
 export default class ModalsStore {
-  rootStore
+  parentStore
 
   @observable isOpen = false
 
-  constructor(rootStore) {
-    this.rootStore = rootStore
+  constructor(parentStore) {
+    this.parentStore = parentStore
   }
 
   @action

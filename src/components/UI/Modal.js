@@ -4,8 +4,8 @@ import ReactModal from 'react-modal'
 
 ReactModal.setAppElement('#root')
 
-const Modal = ({ children, modalsStore, onClose }) => (
-  <ReactModal isOpen={modalsStore.isOpen} onRequestClose={onClose}>
+const Modal = ({ children, isOpen, close }) => (
+  <ReactModal isOpen={isOpen} onRequestClose={close}>
     {children}
   </ReactModal>
 )

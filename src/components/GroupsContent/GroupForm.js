@@ -2,11 +2,9 @@ import React, { useRef, useState } from 'react'
 import { observer } from 'mobx-react'
 import GroupFormStore from '../../stores/Groups/GroupForm'
 
-import CardWrapper from '../CardWrapper'
 import ColorPicker from '../UI/ColorPicker'
 import FormButtons from '../UI/FormButtons'
 import FormField from '../UI/FormField'
-import Modal from '../UI/Modal'
 import Select from '../UI/Select'
 import TextInput from '../UI/TextInput'
 
@@ -43,50 +41,42 @@ const GroupForm = ({ group, groupsStore }) => {
       })
   }
 
-  const handleCancel = () => {
-    formStore.id ? formStore.cancelEdit() : groupsStore.toggleGroupCreation()
-  }
-
   return (
-    <Modal modalsStore={groupsStore.rootStore.modalsStore} onClose={handleCancel}>
-      <CardWrapper className="flex max-w-sm">
-        <form className="w-full" onSubmit={handleSubmit}>
-          <div className="mb-4">
-            {formStore.id ? <div>Редактирование группы</div> : <div>Создание группы</div>}
-          </div>
-          <div className="flex mb-4">
-            <FormField className="flex-grow" label="Название*">
-              <TextInput
-                ref={nameInputRef}
-                autoFocus
-                className="w-full"
-                onChange={handleNameChange}
-                required
-                value={formStore.name}
-              />
-            </FormField>
-            <FormField className="ml-4" label="Цвет">
-              <ColorPicker onChange={handleColorChange} value={formStore.color} />
-            </FormField>
-          </div>
-          <FormField className="mb-4" label="Пользователи">
-            <Select
-              closeMenuOnSelect={false}
-              isMulti
-              onChange={handleSelectChange}
-              options={formStore.usersAsOptions}
-              placeholder="Выбери пользователей..."
-              value={formStore.selectedUsers}
-            />
-          </FormField>
-          <FormButtons
-            isLoading={formStore.isLoading}
-            itemId={formStore.id}
-            onCancel={handleCancel}
+    <form className="w-full" onSubmit={handleSubmit}>
+      <div className="mb-4">
+        {formStore.id ? <div>Редактирование группы</div> : <div>Создание группы</div>}
+      </div>
+      <div className="flex mb-4">
+        <FormField className="flex-grow" label="Название*">
+          <TextInput
+            ref={nameInputRef}
+            autoFocus
+            className="w-full"
+            onChange={handleNameChange}
+            required
+            value={formStore.name}
           />
-        </form>
-      </CardWrapper>
-    </Modal>
+        </FormField>
+        <FormField className="ml-4" label="Цвет">
+          <ColorPicker onChange={handleColorChange} value={formStore.color} />
+        </FormField>
+      </div>
+      <FormField className="mb-4" label="Пользователи">
+        <Select
+          closeMenuOnSelect={false}
+          isMulti
+          onChange={handleSelectChange}
+          options={formStore.usersAsOptions}
+          placeholder="Выбери пользователей..."
+          value={formStore.selectedUsers}
+        />
+      </FormField>
+      <FormButtons
+        isLoading={formStore.isLoading}
+        itemId={formStore.id}
+        onCancel={groupsStore.cancelEdit}
+      />
+    </form>
   )
 }
 
