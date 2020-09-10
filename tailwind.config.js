@@ -23,6 +23,9 @@ module.exports = {
         'secondary-light': colors.pink['500'],
       },
     },
+    inset: {
+      '1/2': '50%',
+    },
   },
   variants: {
     textColor: ['group-hover', 'hover'],
