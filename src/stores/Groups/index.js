@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx'
+import { action, observable, reaction } from 'mobx'
 import GroupModel from './GroupModel'
 import ModalsStore from '../Modal'
 
@@ -14,6 +14,11 @@ export default class Groups {
   constructor(rootStore) {
     this.rootStore = rootStore
     this.formModal = new ModalsStore(this)
+
+    reaction(
+      () => this.formModal.isOpen,
+      isOpen => !isOpen && this.setGroupToEdit(null),
+    )
   }
 
   get api() {
@@ -27,7 +32,7 @@ export default class Groups {
   }
 
   @action
-  cancelEdit = () => {
+  cancelEdit() {
     this.setGroupToEdit(null)
     this.formModal.closeModal()
   }

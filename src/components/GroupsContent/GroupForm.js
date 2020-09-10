@@ -35,7 +35,7 @@ const GroupForm = ({ group, groupsStore }) => {
 
     formStore
       .sendData()
-      .then(groupsStore.toggleGroupCreation)
+      .then(groupsStore.formModal.closeModal)
       .catch(() => {
         nameInputRef.current.focus()
       })
@@ -74,7 +74,7 @@ const GroupForm = ({ group, groupsStore }) => {
       <FormButtons
         isLoading={formStore.isLoading}
         itemId={formStore.id}
-        onCancel={groupsStore.cancelEdit}
+        onCancel={groupsStore.formModal.closeModal}
       />
     </form>
   )
