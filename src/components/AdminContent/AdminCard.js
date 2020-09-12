@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import ActionIcons from '../ActionIcons'
+import ActionIcons from '../UI/AcitionIcons'
 import CardWrapper from '../CardWrapper'
 
 const AdminCard = ({ admin }) => (

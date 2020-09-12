@@ -17,7 +17,10 @@ export default class Groups {
 
     reaction(
       () => this.formModal.isOpen,
-      isOpen => !isOpen && this.setGroupToEdit(null),
+      isOpen => {
+        if (isOpen) return
+        this.setGroupToEdit(null)
+      },
     )
   }
 

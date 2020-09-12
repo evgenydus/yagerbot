@@ -6,17 +6,13 @@ import GroupForm from './GroupForm'
 import Modal from '../UI/Modal'
 
 const ManageGroup = ({ groupsStore }) => {
-  const form = groupsStore.groupToEdit ? (
-    <GroupForm key="edit-group" group={groupsStore.groupToEdit} groupsStore={groupsStore} />
-  ) : (
-    <GroupForm key="create-group" groupsStore={groupsStore} />
-  )
+  const { openModal, isOpen, closeModal } = groupsStore.formModal
 
   return (
     <>
-      <Button onClick={groupsStore.formModal.openModal}>Новая группа</Button>
-      <Modal isOpen={groupsStore.formModal.isOpen} onClose={groupsStore.formModal.closeModal}>
-        {form}
+      <Button onClick={openModal}>Новая группа</Button>
+      <Modal isOpen={isOpen} onClose={closeModal}>
+        <GroupForm group={groupsStore.groupToEdit} groupsStore={groupsStore} />
       </Modal>
     </>
   )
