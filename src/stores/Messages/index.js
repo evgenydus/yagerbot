@@ -29,7 +29,7 @@ export default class MessagesStore {
   @action
   load() {
     return this.api.getMessageList().then(messagesData => {
-      const messages = messagesData.map(message => new MessageModel(message, this))
+      const messages = messagesData.map(message => new MessageModel(this, message))
 
       this.setMessages(messages)
     })

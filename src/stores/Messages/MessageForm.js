@@ -112,8 +112,20 @@ export default class MessageFormStore {
 
   @action
   updateData = () => {
-    this.messagesStore.updateMessage(new MessageModel(this.messagesStore, this.requestPayload))
-    this.cancelEdit()
+    if (this.isLoading) return Promise.resolve()
+
+    this.isLoading = true
+
+    return this.api
+      .updateMessage(this.id, this.requestPayload)
+      .then(messageData => {
+        this.messagesStore.updateMessage(new MessageModel(this.messagesStore, messageData))
+
+        this.cancelEdit()
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
   }
 
   sendData() {
