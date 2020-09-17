@@ -6,7 +6,7 @@ import MessageFormStore from './MessageForm'
 export default class MessageModel {
   messagesStore
 
-  id = _uniqueId('message-')
+  id
   title = ''
   text = ''
   @observable attachments = []
@@ -27,7 +27,8 @@ export default class MessageModel {
   }
 
   @action
-  setMessageData({ attachments, text, title }) {
+  setMessageData({ attachments, id, text, title }) {
+    this.id = id
     this.title = title
     this.text = text
     const newAttachments = attachments.map(

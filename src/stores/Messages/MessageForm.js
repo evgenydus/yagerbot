@@ -35,7 +35,6 @@ export default class MessageFormStore {
   get requestPayload() {
     return {
       // attachments: this.filledAttachments,
-      id: this.id,
       text: this.text,
       title: this.title,
     }
