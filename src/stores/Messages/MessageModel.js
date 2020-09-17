@@ -1,5 +1,7 @@
 import _uniqueId from 'lodash/uniqueId'
-import { computed } from 'mobx'
+import { action, computed, observable } from 'mobx'
+import AttachmentModel from './AttachmentModel'
+import MessageFormStore from './MessageForm'
 
 export default class MessageModel {
   messagesStore
@@ -7,14 +9,11 @@ export default class MessageModel {
   id = _uniqueId('message-')
   title = ''
   text = ''
-  attachments = []
+  @observable attachments = []
 
-  constructor(messagesStore, { attachments, text, title }) {
+  constructor(messagesStore, message) {
     this.messagesStore = messagesStore
-
-    this.title = title
-    this.text = text
-    this.attachments = attachments
+    this.setMessageData(message)
   }
 
   @computed
@@ -25,6 +24,16 @@ export default class MessageModel {
   @computed
   get isEditInProgress() {
     return Boolean(this.messagesStore.messageToEdit)
+  }
+
+  @action
+  setMessageData({ attachments, text, title }) {
+    this.title = title
+    this.text = text
+    const newAttachments = attachments.map(
+      a => new AttachmentModel(new MessageFormStore(this.messagesStore), a.selectedFile),
+    )
+    this.attachments.replace(newAttachments)
   }
 
   destroy = () => {

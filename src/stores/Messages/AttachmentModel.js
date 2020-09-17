@@ -7,8 +7,9 @@ export default class AttachmentModel {
   id = _uniqueId('attachment-')
   @observable selectedFile = null
 
-  constructor(messageFormStore) {
+  constructor(messageFormStore, file) {
     this.messageFormStore = messageFormStore
+    this.setSelectedFile(file)
   }
 
   @action
