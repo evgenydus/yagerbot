@@ -12,6 +12,7 @@ export default class MessageFormStore {
   @observable title = ''
   @observable text = ''
   @observable attachments = []
+  @observable isLoading = false
 
   constructor(messagesStore) {
     this.messagesStore = messagesStore
@@ -26,10 +27,14 @@ export default class MessageFormStore {
     )
   }
 
+  get api() {
+    return this.messagesStore.api
+  }
+
   @computed
   get requestPayload() {
     return {
-      attachments: this.filledAttachments,
+      // attachments: this.filledAttachments,
       id: this.id,
       text: this.text,
       title: this.title,
@@ -110,5 +115,19 @@ export default class MessageFormStore {
   updateData = () => {
     this.messagesStore.updateMessage(new MessageModel(this.messagesStore, this.requestPayload))
     this.cancelEdit()
+  }
+
+  sendData() {
+    this.isLoading = true
+
+    return this.api
+      .createMessage(this.requestPayload)
+      .then(messageData => {
+        this.messagesStore.addMessage(messageData)
+        this.resetForm()
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
   }
 }
