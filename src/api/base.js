@@ -2,7 +2,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 const proxyURL = 'https://cors-anywhere.herokuapp.com/'
-const baseURL = `${proxyURL}http://ygbot.sogood.by/api/v1`
+const baseURL = `${proxyURL}https://ygbot.sogood.by/api/v1`
 
 const makeRequest = (method, url, payload = {}) => {
   const options = {
