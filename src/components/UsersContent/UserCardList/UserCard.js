@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { css } from '@emotion/core'
 
-import ActionIcons from '../../UI/AcitionIcons'
+import ActionIcons from '../../UI/ActionIcons'
 import CardWrapper from '../../CardWrapper'
 import Tooltip from '../../UI/Tooltip'
 
