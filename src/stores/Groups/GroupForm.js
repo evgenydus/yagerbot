@@ -85,15 +85,11 @@ export default class GroupForm {
           rawGroup: groupData,
         })
         this.groupsStore.rootStore.usersStore.load()
-        this.cancelEdit()
+        this.groupsStore.cancelEdit()
       })
       .finally(() => {
         this.isLoading = false
       })
-  }
-
-  cancelEdit = () => {
-    this.groupsStore.setGroupToEdit(null)
   }
 
   sendData() {

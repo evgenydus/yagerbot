@@ -3,15 +3,19 @@ import { observer } from 'mobx-react'
 
 import Button from '../UI/Button'
 import GroupForm from './GroupForm'
+import Modal from '../UI/Modal'
 
 const ManageGroup = ({ groupsStore }) => {
-  if (groupsStore.groupToEdit)
-    return <GroupForm key="edit-group" group={groupsStore.groupToEdit} groupsStore={groupsStore} />
+  const { openModal, isOpen, closeModal } = groupsStore.formModal
 
-  if (!groupsStore.isGroupCreation)
-    return <Button onClick={groupsStore.toggleGroupCreation}>Новая группа</Button>
-
-  return <GroupForm key="create-group" groupsStore={groupsStore} />
+  return (
+    <>
+      <Button onClick={openModal}>Новая группа</Button>
+      <Modal isOpen={isOpen} onClose={closeModal}>
+        <GroupForm group={groupsStore.groupToEdit} groupsStore={groupsStore} />
+      </Modal>
+    </>
+  )
 }
 
 export default observer(ManageGroup)

@@ -1,17 +1,27 @@
-import { action, observable } from 'mobx'
+import { action, observable, reaction } from 'mobx'
 import GroupModel from './GroupModel'
+import ModalsStore from '../Modal'
 
 export default class Groups {
   rootStore
+  formModal
 
   @observable rawData = []
   @observable groups = []
   @observable isLoaded = false
   @observable groupToEdit = null
-  @observable isGroupCreation
 
   constructor(rootStore) {
     this.rootStore = rootStore
+    this.formModal = new ModalsStore(this)
+
+    reaction(
+      () => this.formModal.isOpen,
+      isOpen => {
+        if (isOpen) return
+        this.setGroupToEdit(null)
+      },
+    )
   }
 
   get api() {
@@ -22,6 +32,12 @@ export default class Groups {
   addGroup(groupData) {
     this.rawData.push(groupData)
     this.groups.push(new GroupModel(groupData, this))
+  }
+
+  @action
+  cancelEdit() {
+    this.setGroupToEdit(null)
+    this.formModal.closeModal()
   }
 
   @action
@@ -52,7 +68,6 @@ export default class Groups {
 
   @action
   setGroupToEdit(group) {
-    this.isGroupCreation = false
     this.groupToEdit = group
   }
 
@@ -60,11 +75,6 @@ export default class Groups {
   setRawData(array) {
     this.rawData.replace(array)
     this.isLoaded = true
-  }
-
-  @action
-  toggleGroupCreation = () => {
-    this.isGroupCreation = !this.isGroupCreation
   }
 
   @action

@@ -34,6 +34,7 @@ export default class GroupModel {
 
   edit = () => {
     this.groupsStore.setGroupToEdit(this)
+    this.groupsStore.formModal.openModal()
   }
 
   destroy = () => {

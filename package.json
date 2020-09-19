@@ -35,6 +35,7 @@
     "react": "^16.13.1",
     "react-color": "^2.18.1",
     "react-hot-loader": "^4.12.21",
+    "react-modal": "^3.11.2",
     "react-select": "^3.1.0",
     "react-toastify": "^6.0.8",
     "tailwindcss": "^1.7.2",
