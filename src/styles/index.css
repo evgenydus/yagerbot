@@ -1,6 +1,6 @@
 @tailwind base;
 
-input, a, button:focus {
+input, a, button:focus, .ReactModal__Content:focus {
   outline: none;
 }
 

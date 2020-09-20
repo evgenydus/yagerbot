@@ -14,7 +14,7 @@ const Modal = ({ children, isOpen, onClose }) => (
     onRequestClose={onClose}
   >
     <div
-      className="absolute flex h-4 items-center justify-center link-alert w-4"
+      className="absolute flex h-4 items-center justify-center link w-4"
       css={css`
         right: 10px;
         top: 10px;
