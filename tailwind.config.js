@@ -1,4 +1,4 @@
-const { colors } = require('tailwindcss/defaultTheme')
+const { colors, screens } = require('tailwindcss/defaultTheme')
 
 module.exports = {
   corePlugins: {
@@ -25,6 +25,10 @@ module.exports = {
     },
     inset: {
       '1/2': '50%',
+    },
+    screens: {
+      ...screens,
+      xs: { max: '767px' },
     },
   },
   variants: {
