@@ -53,8 +53,9 @@ export default class MessagesStore {
   @action
   removeMessage(message) {
     this.messages.remove(message)
-
-    this.api.deleteMessage(message.id)
+    this.api.deleteMessage(message.id).catch(() => {
+      this.addMessage(message)
+    })
   }
 
   @action
