@@ -39,3 +39,10 @@ const getRoutes = items =>
   }, {})
 
 export const routes = getRoutes(navigationItems)
+
+export const fileTypes = {
+  audio: 'Аудио',
+  file: 'Файл',
+  picture: 'Картинка',
+  video: 'Видео',
+}

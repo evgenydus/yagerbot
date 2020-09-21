@@ -5,6 +5,7 @@ import { faClipboardList } from '@fortawesome/pro-regular-svg-icons/faClipboardL
 import { faHomeLg } from '@fortawesome/pro-regular-svg-icons/faHomeLg'
 import { faInboxOut } from '@fortawesome/pro-regular-svg-icons/faInboxOut'
 import { faPencilAlt } from '@fortawesome/pro-regular-svg-icons/faPencilAlt'
+import { faPlus } from '@fortawesome/pro-regular-svg-icons/faPlus'
 import { faTimes } from '@fortawesome/pro-regular-svg-icons/faTimes'
 import { faTools } from '@fortawesome/pro-regular-svg-icons/faTools'
 import { faUsersCrown } from '@fortawesome/pro-regular-svg-icons/faUsersCrown'
@@ -15,6 +16,7 @@ library.add(
   faHomeLg,
   faInboxOut,
   faPencilAlt,
+  faPlus,
   faTimes,
   faTools,
   faUsersCrown,

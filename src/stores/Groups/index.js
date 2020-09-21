@@ -2,7 +2,7 @@ import { action, observable, reaction } from 'mobx'
 import GroupModel from './GroupModel'
 import ModalsStore from '../Modal'
 
-export default class Groups {
+export default class GroupsStore {
   rootStore
   formModal
 
