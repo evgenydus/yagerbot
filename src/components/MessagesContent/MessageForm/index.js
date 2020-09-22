@@ -22,14 +22,23 @@ const MessageForm = ({ messagesStore }) => {
 
   const handleSubmit = event => {
     event.preventDefault()
+
+    if (formStore.id) {
+      formStore.updateData()
+
+      return
+    }
+
     messagesStore.addMessage(formStore.requestPayload)
     messagesStore.toggleMessageCreation()
   }
 
   return (
-    <CardWrapper className="flex max-w-sm">
+    <CardWrapper className="flex max-w-sm xs:max-w-xs xs:mx-auto">
       <form className="w-full" onSubmit={handleSubmit}>
-        <div className="mb-4">Создание сообщения</div>
+        <div className="mb-4">
+          {formStore.id ? <div>Редактирование сообщения</div> : <div>Создание сообщения</div>}
+        </div>
         <FormField className="mb-4" label="Название">
           <TextInput
             autoFocus
@@ -62,7 +71,10 @@ const MessageForm = ({ messagesStore }) => {
             </Button>
           )}
         </FormField>
-        <FormButtons onCancel={messagesStore.toggleMessageCreation} />
+        <FormButtons
+          itemId={formStore.id}
+          onCancel={formStore.id ? formStore.cancelEdit : messagesStore.toggleMessageCreation}
+        />
       </form>
     </CardWrapper>
   )

@@ -5,10 +5,17 @@ import Button from '../UI/Button'
 import MessageForm from './MessageForm'
 
 const ManageMessage = ({ messagesStore }) => {
-  if (!messagesStore.isMessageCreation)
-    return <Button onClick={messagesStore.toggleMessageCreation}>Новое сообщение</Button>
+  if (messagesStore.messageToEdit)
+    return <MessageForm key="edit-message" messagesStore={messagesStore} />
 
-  return <MessageForm messagesStore={messagesStore} />
+  if (!messagesStore.isMessageCreation)
+    return (
+      <Button className="xs:mx-auto" onClick={messagesStore.toggleMessageCreation}>
+        Новое сообщение
+      </Button>
+    )
+
+  return <MessageForm key="create-message" messagesStore={messagesStore} />
 }
 
 export default observer(ManageMessage)

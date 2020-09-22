@@ -36,6 +36,11 @@ export default class RootStore {
   }
 
   @computed
+  get totalMessagesCount() {
+    return this.messagesStore.messages.length
+  }
+
+  @computed
   get totalUsersCount() {
     return this.usersStore.users.length
   }
