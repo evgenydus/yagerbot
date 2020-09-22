@@ -1,20 +1,16 @@
-import _uniqueId from 'lodash/uniqueId'
-import { computed } from 'mobx'
+import { action, computed, observable } from 'mobx'
 
 export default class MessageModel {
   messagesStore
 
-  id = _uniqueId('message-')
+  id
   title = ''
   text = ''
-  attachments = []
+  @observable attachments = []
 
-  constructor(messagesStore, { attachments, text, title }) {
+  constructor(messagesStore, message) {
     this.messagesStore = messagesStore
-
-    this.title = title
-    this.text = text
-    this.attachments = attachments
+    this.setMessageData(message)
   }
 
   @computed
@@ -25,6 +21,13 @@ export default class MessageModel {
   @computed
   get isEditInProgress() {
     return Boolean(this.messagesStore.messageToEdit)
+  }
+
+  @action
+  setMessageData({ id, text, title }) {
+    this.id = id
+    this.title = title
+    this.text = text
   }
 
   destroy = () => {

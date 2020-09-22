@@ -17,7 +17,7 @@ const Attachment = ({ attachment }) => {
     <div className="flex last:mb-0 mb-2">
       <div className="flex flex-1 flex-col max-w-full p-2 shadow text-sm">
         <label className="link-underline truncate overflow-hidden" htmlFor={attachment.id}>
-          {attachment.selectedFile?.name || 'Выбрать файл'}
+          {attachment.selectedFile?.name || attachment.selectedFile || 'Выбрать файл'}
         </label>
         <input
           className="hidden"

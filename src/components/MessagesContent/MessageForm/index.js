@@ -23,14 +23,15 @@ const MessageForm = ({ messagesStore }) => {
   const handleSubmit = event => {
     event.preventDefault()
 
+    if (formStore.isLoading) return
+
     if (formStore.id) {
       formStore.updateData()
 
       return
     }
 
-    messagesStore.addMessage(formStore.requestPayload)
-    messagesStore.toggleMessageCreation()
+    formStore.sendData().then(messagesStore.toggleMessageCreation)
   }
 
   return (
@@ -72,6 +73,7 @@ const MessageForm = ({ messagesStore }) => {
           )}
         </FormField>
         <FormButtons
+          isLoading={formStore.isLoading}
           itemId={formStore.id}
           onCancel={formStore.id ? formStore.cancelEdit : messagesStore.toggleMessageCreation}
         />

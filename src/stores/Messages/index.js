@@ -12,6 +12,10 @@ export default class MessagesStore {
     this.rootStore = rootStore
   }
 
+  get api() {
+    return this.rootStore.api.messages
+  }
+
   @computed
   get hasMessages() {
     return Boolean(this.rootStore.totalMessagesCount)
@@ -20,6 +24,20 @@ export default class MessagesStore {
   @action
   addMessage(messageData) {
     this.messages.push(new MessageModel(this, messageData))
+  }
+
+  @action
+  load() {
+    return this.api.getMessageList().then(messagesData => {
+      const messages = messagesData.map(message => new MessageModel(this, message))
+
+      this.setMessages(messages)
+    })
+  }
+
+  @action
+  setMessages(messages) {
+    this.messages.replace(messages)
   }
 
   @action
@@ -35,6 +53,9 @@ export default class MessagesStore {
   @action
   removeMessage(message) {
     this.messages.remove(message)
+    this.api.deleteMessage(message.id).catch(() => {
+      this.addMessage(message)
+    })
   }
 
   @action

@@ -57,8 +57,10 @@ export default class RootStore {
   }
 
   loadMainData() {
-    Promise.all([this.usersStore.load(), this.groupsStore.load()]).then(() => {
-      this.setReady(true)
-    })
+    Promise.all([this.usersStore.load(), this.groupsStore.load(), this.messagesStore.load()]).then(
+      () => {
+        this.setReady(true)
+      },
+    )
   }
 }
