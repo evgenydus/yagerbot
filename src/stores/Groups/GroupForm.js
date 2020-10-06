@@ -9,14 +9,8 @@ export default class GroupFormStore {
 
   @observable isLoading = false
 
-  constructor(groupsStore, group) {
+  constructor(groupsStore) {
     this.groupsStore = groupsStore
-    if (group) {
-      this.id = group.id
-      this.name = group.name
-      this.color = group.color
-      this.userIds = group.userIds.slice()
-    }
   }
 
   get api() {
@@ -59,6 +53,14 @@ export default class GroupFormStore {
   @action
   setColor(value) {
     this.color = value
+  }
+
+  @action
+  setFormData({ color, id, name, userIds }) {
+    this.id = id
+    this.name = name
+    this.color = color
+    this.userIds = userIds.slice()
   }
 
   @action

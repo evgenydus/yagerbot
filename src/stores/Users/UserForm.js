@@ -10,11 +10,8 @@ export default class UserFormStore {
   @observable isLoading
 
   constructor(usersStore) {
-    const user = usersStore.userToEdit || usersStore.users[0]
-    this.user = user
-    this.label = user.label
-    this.groupIds = user.groupIds.slice()
-
+    const user = usersStore.userToEdit
+    this.setFormData(user)
     this.usersStore = usersStore
   }
 
@@ -41,6 +38,13 @@ export default class UserFormStore {
   @computed
   get selectedGroups() {
     return this.groupIds.map(id => this.groupsAsOptions.find(option => option.value === id))
+  }
+
+  @action
+  setFormData(user) {
+    this.user = user
+    this.label = user.label
+    this.groupIds = user.groupIds.slice()
   }
 
   @action
